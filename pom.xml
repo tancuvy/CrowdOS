@@ -12,6 +12,7 @@
         <module>kernel</module>
         <module>DataService</module>
         <module>ALGO</module>
+        <module>SimulationSystem</module>
     </modules>
 
     <description>This is CrowdOS Project.</description>
