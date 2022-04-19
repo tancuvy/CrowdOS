@@ -21,7 +21,11 @@ public class CrowdKernel {
         initialed = true;
     }
 
+    public void initial(){
+        initialed = true;
+    }
+
     public void otherOpera(){
-        if (! initialed) throw new UnsupportedOperationException();
+        if (! initialed) throw new UninitializedKernelException();
     }
 }
