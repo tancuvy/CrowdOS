@@ -35,16 +35,12 @@ import java.util.List;
  *   import cn.crowdos.kernel.constraint.Constraint;
  *
  *   public class TimeConstraint implement Constraint {
- *      @override
  *      void satisfy(){...}
  *
- *      @override
  *      void unSatisfy(){...}
  *
- *      @override
  *      boolean isSatisfied(){...}
  *
- *      @override
  *      String description(){
  *          return "Time Constraint";
  *      }
@@ -52,9 +48,8 @@ import java.util.List;
  *      ... // other methods
  *   }
  * }</pre>
- * After that the constraint class will be involved in the kernel's task
- * allocation process.
- * </p>
+ * <p>After that the constraint class will be involved in the kernel's task
+ * allocation process.</p>
  *
  * <p>Note that the class that implements this interface contains the state,
  * and the method {@link Constraint#satisfy()} and {@link Constraint#unSatisfy()}

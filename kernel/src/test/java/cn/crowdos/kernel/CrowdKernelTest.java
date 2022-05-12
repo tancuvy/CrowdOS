@@ -8,7 +8,7 @@ import java.awt.image.Kernel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CrowdKernelTest {
+public class CrowdKernelTest {
 
     @BeforeEach
     void setUp() {

@@ -10,7 +10,7 @@ import java.util.function.Function;
  *     <li>{@link Decomposer#decomposerIterator(int)}</li>
  *     <li>{@link Decomposer#decomposerIterator(Function)}</li>
  * </ul>
- * to indicate something exceptions occurred during the decomposition operation. The most
+ * <p>to indicate something exceptions occurred during the decomposition operation. The most
  * common cause is {@link InvalidConstraintException}.</p>
  *
  * @see InvalidConstraintException
