@@ -60,10 +60,6 @@ public interface Decomposer<T> {
         return scaleDecomposerIterator(scale);
     }
 
-    List<T> decompose(Function<T, List<T>> decomposeAction) throws DecomposeException;
-
-    Iterator<T> decomposerIterator(Function<T, Iterator<T>> decomposerIteratorAction) throws DecomposeException;
-
     List<T> trivialDecompose();
 
     Iterator<T> trivialDecomposerIterator();

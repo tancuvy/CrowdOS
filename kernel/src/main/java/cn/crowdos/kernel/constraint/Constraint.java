@@ -1,9 +1,5 @@
 package cn.crowdos.kernel.constraint;
 
-import cn.crowdos.kernel.resource.Participant;
-
-import java.util.List;
-
 /**
  * <p>In <i>Mobile CrowdSensing</i> (MCS), there are a lots of constraints.
  * For task, there exits Spatial constraint, Temporal constraint or
@@ -46,34 +42,17 @@ import java.util.List;
  *      }
  *
  *      ... // other methods
- *   }
+ *   } //todo update doc
  * }</pre>
  * <p>After that the constraint class will be involved in the kernel's task
  * allocation process.</p>
- *
- * <p>Note that the class that implements this interface contains the state,
- * and the method {@link Constraint#satisfy()} and {@link Constraint#unSatisfy()}
- * are <i>not</i> idempotent method.</p>
  *
  * @since 1.0.0
  * @author loyx
  */
 public interface Constraint{
-    /**
-     * satisfy this Constraint and set the satisfied state.
-     */
-    void satisfy();
-
-    /**
-     * undo satisfy operation, this method will affect satisfied state.
-     */
-    void unSatisfy();
-
-    /**
-     * Return {@code true} if this constraint is satisfied.
-     * @return {@code true} if this constraint is satisfied
-     */
-    boolean isSatisfied();
+    //todo doc
+    boolean satisfy(Object condition);
 
     /**
      * Return the description of this constraint.

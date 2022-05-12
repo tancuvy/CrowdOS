@@ -26,6 +26,7 @@ public class InvalidConstraintException extends Exception {
      * @param cause the cause (which is saved for later retrieval by the
      *         {@link Throwable#getCause()} method).
      */
+    @Deprecated
     public InvalidConstraintException(Throwable cause) {
         super(cause==null ? null : cause.toString());
         this.initCause(cause);
@@ -41,6 +42,9 @@ public class InvalidConstraintException extends Exception {
     public InvalidConstraintException(String message) {
         super(message);
     }
+
+    @Deprecated
+    public InvalidConstraintException(){super();}
 
     /**
      * Throws NotSerializableException, since InvalidConstraintException
