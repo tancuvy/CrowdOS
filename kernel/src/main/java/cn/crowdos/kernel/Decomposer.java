@@ -1,8 +1,7 @@
-package cn.crowdos.kernel.constraint;
+package cn.crowdos.kernel;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
 
 
 /**
@@ -14,6 +13,7 @@ import java.util.function.Function;
  *     <li>Collection style that return a {@link List}.</li>
  *     <li>Iterator style that return a {@link Iterator}.</li>
  * </ul>
+ * // todo update doc
  *
  * @param <T> the type of decompositions returned by this decomposer.
  * @author loyx

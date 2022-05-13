@@ -1,4 +1,6 @@
-package cn.crowdos.kernel.constraint;
+package cn.crowdos.kernel;
+
+import cn.crowdos.kernel.constraint.InvalidConstraintException;
 
 import java.util.function.Function;
 
@@ -6,12 +8,10 @@ import java.util.function.Function;
  * <p>Thrown by
  * <ul>
  *     <li>{@link Decomposer#decompose(int)}</li>
- *     <li>{@link Decomposer#decompose(Function)}</li>
  *     <li>{@link Decomposer#decomposerIterator(int)}</li>
- *     <li>{@link Decomposer#decomposerIterator(Function)}</li>
  * </ul>
  * <p>to indicate something exceptions occurred during the decomposition operation. The most
- * common cause is {@link InvalidConstraintException}.</p>
+ * common cause is {@link InvalidConstraintException}.</p> //todo update doc
  *
  * @see InvalidConstraintException
  * @since 1.0.0
