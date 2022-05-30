@@ -47,4 +47,8 @@ public class DecomposeException extends Exception{
     public DecomposeException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public DecomposeException(String message) {
+        super(message);
+    }
 }

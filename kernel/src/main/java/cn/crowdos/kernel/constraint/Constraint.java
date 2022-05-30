@@ -1,5 +1,8 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.Decomposable;
+import jdk.nashorn.internal.codegen.ObjectClassGenerator;
+
 /**
  * <p>In <i>Mobile CrowdSensing</i> (MCS), there are a lots of constraints.
  * For task, there exits Spatial constraint, Temporal constraint or
@@ -50,9 +53,11 @@ package cn.crowdos.kernel.constraint;
  * @since 1.0.0
  * @author loyx
  */
-public interface Constraint{
+public interface Constraint extends Decomposable<Constraint> {
     //todo doc
-    boolean satisfy(Object condition);
+    boolean satisfy(Condition condition);
+
+    Class<? extends Condition> getConditionClass();
 
     /**
      * Return the description of this constraint.

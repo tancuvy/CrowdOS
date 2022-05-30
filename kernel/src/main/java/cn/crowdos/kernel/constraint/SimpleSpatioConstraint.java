@@ -1,7 +1,6 @@
 package cn.crowdos.kernel.constraint;
 
-import javafx.scene.SceneAntialiasing;
-import javafx.scene.layout.CornerRadii;
+import cn.crowdos.kernel.Decomposer;
 
 public class SimpleSpatioConstraint implements Constraint {
 
@@ -19,7 +18,7 @@ public class SimpleSpatioConstraint implements Constraint {
     }
 
     @Override
-    public boolean satisfy(Object condition) {
+    public boolean satisfy(Condition condition) {
         if (!(condition instanceof Coordinate)) return false;
         Coordinate coord = (Coordinate) condition;
         return range[0].longitude <= coord.longitude && range[0].latitude <= coord.latitude
@@ -27,7 +26,17 @@ public class SimpleSpatioConstraint implements Constraint {
     }
 
     @Override
+    public Class<? extends Condition> getConditionClass() {
+        return Coordinate.class;
+    }
+
+    @Override
     public String description() {
         return toString();
+    }
+
+    @Override
+    public Decomposer<Constraint> decomposer() {
+        return null;
     }
 }

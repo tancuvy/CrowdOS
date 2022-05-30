@@ -1,5 +1,7 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.Decomposer;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,14 +30,24 @@ public class SimpleTimeConstraint implements Constraint{
     }
 
     @Override
-    public boolean satisfy(Object condition) {
+    public boolean satisfy(Condition condition) {
         if (!(condition instanceof Date)) return false;
         Date date = (Date) condition;
         return dateRange[0].compareTo(date) <= 0 && date.compareTo(dateRange[1]) < 0;
     }
 
     @Override
+    public Class<Condition> getConditionClass() {
+        return null;
+    }
+
+    @Override
     public String description() {
         return this.toString();
+    }
+
+    @Override
+    public Decomposer<Constraint> decomposer() {
+        return null;
     }
 }

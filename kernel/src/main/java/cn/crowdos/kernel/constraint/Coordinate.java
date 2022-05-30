@@ -1,6 +1,6 @@
 package cn.crowdos.kernel.constraint;
 
-public class Coordinate {
+public class Coordinate implements Condition{
     final double longitude;
     final double latitude;
     public Coordinate(double longitude, double latitude){

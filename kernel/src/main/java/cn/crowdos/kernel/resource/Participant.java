@@ -1,10 +1,14 @@
 package cn.crowdos.kernel.resource;
 
-public abstract class Participant implements Resource{
+import cn.crowdos.kernel.constraint.Condition;
 
+public interface Participant {
 
-    @Override
-    public boolean available() {
-        return false;
-    }
+    boolean hasAbility(Class<? extends Condition> conditionClass);
+
+    Condition getAbility(Class<? extends Condition> conditionClass);
+
+    boolean available();
+
+    ResourceStatus getCurrentStatus();
 }
