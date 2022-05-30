@@ -9,9 +9,9 @@ import java.util.List;
 
 public abstract class AbstractTask implements Task{
 
-    private final List<Constraint> constraints;
-    private final TaskDistributionType taskDistributionType;
-    private TaskStatus status;
+    protected final List<Constraint> constraints;
+    protected final TaskDistributionType taskDistributionType;
+    protected TaskStatus status;
 
     protected AbstractTask(List<Constraint> constraints, TaskDistributionType taskDistributionType) {
         this.constraints = constraints;

@@ -8,7 +8,7 @@ import java.util.*;
 
 public class SimpleTask extends AbstractTask{
 
-    protected SimpleTask(List<Constraint> constraints, TaskDistributionType taskDistributionType) {
+    public SimpleTask(List<Constraint> constraints, TaskDistributionType taskDistributionType) {
         super(constraints, taskDistributionType);
     }
 
