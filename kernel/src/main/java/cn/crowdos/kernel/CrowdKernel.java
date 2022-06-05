@@ -1,12 +1,24 @@
 package cn.crowdos.kernel;
 
+import cn.crowdos.kernel.algorithms.TrivialAlgoFactory;
+import cn.crowdos.kernel.resource.Participant;
+import cn.crowdos.kernel.system.SystemResourceCollection;
+import cn.crowdos.kernel.system.SystemResourceHandler;
+import cn.crowdos.kernel.system.resource.ResourceItem;
+import cn.crowdos.kernel.tasksystem.Scheduler;
+import cn.crowdos.kernel.tasksystem.Task;
+
+import java.util.ArrayList;
+
 public class CrowdKernel {
 
     private boolean initialed = false;
-
     private static CrowdKernel kernel;
+    private SystemResourceCollection systemResourceCollection;
+    private Scheduler scheduler;
+
     public static String version(){
-        return "CrowdOS cn.crowdos.kernel.Kernel v1.0";
+        return "CrowdOS Kernel v1.0";
     }
 
     private CrowdKernel(){}
@@ -17,12 +29,19 @@ public class CrowdKernel {
         return kernel;
     }
 
+    public boolean submit(Task task){
+        if (! initialed) throw new UninitializedKernelException();
+        return true;
+    }
+
     public void initial(Object...args){
+        systemResourceCollection = new SystemResourceCollection();
+        scheduler = new Scheduler(systemResourceCollection);
         initialed = true;
     }
 
     public void initial(){
-        initialed = true;
+        initial((Object) null);
     }
 
     public void otherOpera(){
