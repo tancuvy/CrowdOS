@@ -9,7 +9,9 @@ import cn.crowdos.kernel.system.SystemResourceCollection;
 import cn.crowdos.kernel.system.SystemResourceHandler;
 import cn.crowdos.kernel.system.resource.AlgoContainer;
 import cn.crowdos.kernel.system.resource.Resource;
+import cn.crowdos.kernel.system.resource.TaskPool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Scheduler implements Resource<Scheduler> {
@@ -27,6 +29,24 @@ public class Scheduler implements Resource<Scheduler> {
         participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
         taskRecommendationAlgo = algoFactory.getTaskRecommendationAlgo();
         taskAssignmentAlgo = algoFactory.getTaskAssignmentAlgo();
+    }
+
+    public List<List<Participant>> recommendTasks(){
+        TaskPool resourceView = resourceCollection.getResourceHandler(TaskPool.class).getResourceView();
+        List<List<Participant>> recommendScheme = new ArrayList<>(resourceView.size());
+        for (Task task : resourceView) {
+            recommendScheme.add(taskRecommendation(task));
+        }
+        return recommendScheme;
+    }
+
+    public List<List<Participant>> assignTasks(){
+        TaskPool resourceView = resourceCollection.getResourceHandler(TaskPool.class).getResourceView();
+        List<List<Participant>> assignmentScheme = new ArrayList<>(resourceView.size());
+        for (Task task : resourceView) {
+            assignmentScheme.add(taskAssignment(task));
+        }
+        return assignmentScheme;
     }
 
     public List<Participant> participantSelection(Task task){
