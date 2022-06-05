@@ -23,4 +23,14 @@ public class CrowdKernelTest {
         System.out.println(CrowdKernel.version());
         assertEquals(1, 1);
     }
+
+    @Test
+    void submit() {
+    }
+
+    @Test
+    void initial() {
+        CrowdKernel kernel = CrowdKernel.getKernel();
+        kernel.initial();
+    }
 }

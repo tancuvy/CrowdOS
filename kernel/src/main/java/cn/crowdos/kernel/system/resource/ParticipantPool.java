@@ -8,16 +8,17 @@ import java.util.LinkedList;
 public class ParticipantPool extends LinkedList<Participant> implements Resource<ParticipantPool> {
     @Override
     public SystemResourceHandler<ParticipantPool> getHandler() {
-        return new SystemResourceHandler<ParticipantPool>(this) {
+        ParticipantPool participants = this;
+        return new SystemResourceHandler<ParticipantPool>() {
 
             @Override
             public ParticipantPool getResourceView() {
-                return source;
+                return participants;
             }
 
             @Override
             public ParticipantPool getResource() {
-                return source;
+                return participants;
             }
         };
     }

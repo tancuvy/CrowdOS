@@ -7,11 +7,12 @@ import cn.crowdos.kernel.algorithms.TaskRecommendationAlgo;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.SystemResourceCollection;
 import cn.crowdos.kernel.system.SystemResourceHandler;
-import cn.crowdos.kernel.system.resource.AlgoSet;
+import cn.crowdos.kernel.system.resource.AlgoContainer;
+import cn.crowdos.kernel.system.resource.Resource;
 
 import java.util.List;
 
-public class Scheduler {
+public class Scheduler implements Resource<Scheduler> {
     private final ParticipantSelectionAlgo participantSelectionAlgo;
     private final TaskRecommendationAlgo taskRecommendationAlgo;
     private final TaskAssignmentAlgo taskAssignmentAlgo;
@@ -20,7 +21,7 @@ public class Scheduler {
 
     public Scheduler(SystemResourceCollection collection){
         this.resourceCollection = collection;
-        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoSet.class);
+        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoContainer.class);
         this.algoFactory = resourceHandler.getResource();
 
         participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
@@ -42,5 +43,10 @@ public class Scheduler {
 
     public AlgoFactory getAlgoFactory() {
         return algoFactory;
+    }
+
+    @Override
+    public SystemResourceHandler<Scheduler> getHandler() {
+        return null;
     }
 }

@@ -38,11 +38,41 @@ public class TrivialAlgoFactory implements AlgoFactory{
 
     @Override
     public TaskRecommendationAlgo getTaskRecommendationAlgo() {
-        return null;
+        return new TaskRecommendationAlgo() {
+            final ParticipantPool participantPool;
+            {
+                participantPool = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
+            }
+            @Override
+            public List<Participant> getRecommendationScheme(Task task) {
+                List<Participant> candidate = new LinkedList<>();
+                for (Participant participant : participantPool) {
+                    if (participant.available() && task.canAssignTo(participant)){
+                        candidate.add(participant);
+                    }
+                }
+                return candidate;
+            }
+        };
     }
 
     @Override
     public TaskAssignmentAlgo getTaskAssignmentAlgo() {
-        return null;
+        return new TaskAssignmentAlgo() {
+            final ParticipantPool participantPool;
+            {
+                participantPool = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
+            }
+            @Override
+            public List<Participant> getAssignmentScheme(Task task) {
+                List<Participant> candidate = new LinkedList<>();
+                for (Participant participant : participantPool) {
+                    if (participant.available() && task.canAssignTo(participant)){
+                        candidate.add(participant);
+                    }
+                }
+                return candidate;
+            }
+        };
     }
 }

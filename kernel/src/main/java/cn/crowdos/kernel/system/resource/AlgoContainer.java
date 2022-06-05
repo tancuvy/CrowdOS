@@ -3,24 +3,22 @@ package cn.crowdos.kernel.system.resource;
 import cn.crowdos.kernel.algorithms.AlgoFactory;
 import cn.crowdos.kernel.system.SystemResourceHandler;
 
-public class AlgoSet implements Resource<AlgoFactory>{
+public class AlgoContainer extends ResourceContainer<AlgoFactory> {
 
-    private final AlgoFactory factory;
-    public AlgoSet(AlgoFactory factory){
-        this.factory = factory;
+    public AlgoContainer(AlgoFactory resource) {
+        super(resource);
     }
-
     @Override
     public SystemResourceHandler<AlgoFactory> getHandler() {
-        return new SystemResourceHandler<AlgoFactory>(factory) {
+        return new SystemResourceHandler<AlgoFactory>() {
             @Override
             public AlgoFactory getResourceView() {
-                return source;
+                return resource;
             }
 
             @Override
             public AlgoFactory getResource() {
-                return source;
+                return resource;
             }
         };
     }

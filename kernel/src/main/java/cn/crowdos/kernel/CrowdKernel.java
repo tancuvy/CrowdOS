@@ -2,9 +2,10 @@ package cn.crowdos.kernel;
 
 import cn.crowdos.kernel.algorithms.TrivialAlgoFactory;
 import cn.crowdos.kernel.resource.Participant;
+import cn.crowdos.kernel.system.DuplicateResourceNameException;
 import cn.crowdos.kernel.system.SystemResourceCollection;
 import cn.crowdos.kernel.system.SystemResourceHandler;
-import cn.crowdos.kernel.system.resource.ResourceItem;
+import cn.crowdos.kernel.system.resource.*;
 import cn.crowdos.kernel.tasksystem.Scheduler;
 import cn.crowdos.kernel.tasksystem.Task;
 
@@ -14,8 +15,8 @@ public class CrowdKernel {
 
     private boolean initialed = false;
     private static CrowdKernel kernel;
+
     private SystemResourceCollection systemResourceCollection;
-    private Scheduler scheduler;
 
     public static String version(){
         return "CrowdOS Kernel v1.0";
@@ -36,12 +37,23 @@ public class CrowdKernel {
 
     public void initial(Object...args){
         systemResourceCollection = new SystemResourceCollection();
-        scheduler = new Scheduler(systemResourceCollection);
+        try {
+            systemResourceCollection.register(new TaskPool());
+            systemResourceCollection.register(new ParticipantPool());
+            systemResourceCollection.register(new AlgoContainer(new TrivialAlgoFactory(systemResourceCollection)));
+            systemResourceCollection.register(new Scheduler(systemResourceCollection));
+        } catch (DuplicateResourceNameException e) {
+            throw new RuntimeException(e);
+        }
         initialed = true;
     }
 
     public void initial(){
         initial((Object) null);
+    }
+
+    public SystemResourceCollection getSystemResourceCollection() {
+        return systemResourceCollection;
     }
 
     public void otherOpera(){

@@ -8,16 +8,18 @@ import java.util.LinkedList;
 public class TaskPool extends LinkedList<Task> implements Resource<TaskPool> {
     @Override
     public SystemResourceHandler<TaskPool> getHandler() {
-        return new SystemResourceHandler<TaskPool>(this) {
+        TaskPool tasks = this;
+
+        return new SystemResourceHandler<TaskPool>() {
 
             @Override
             public TaskPool getResourceView() {
-                return source;
+                return tasks;
             }
 
             @Override
             public TaskPool getResource() {
-                return source;
+                return tasks;
             }
         };
     }
