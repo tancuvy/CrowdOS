@@ -10,21 +10,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SystemResourceCollection {
-    Map<Class<?>, Resource<?>> resourceMap;
+    Map<Class<?>, Map<String, Resource<?>>> resourceMap;
 
     public SystemResourceCollection(){
         resourceMap = new HashMap<>();
     }
-    public void register(Resource<?> resource){
-        resourceMap.put(resource.getClass(), resource);
+    public void register(Resource<?> resource) throws DuplicateResourceNameException {
+        register(resource, "default");
     }
+    public void register(Resource<?> resource, String resourceName) throws DuplicateResourceNameException {
+        if (!resourceMap.containsKey(resource.getClass())) {
+            resourceMap.put(resource.getClass(), new HashMap<>());
+        }
+        Map<String, Resource<?>> resList = resourceMap.get(resource.getClass());
+        if (resList.size() != 0 && resList.containsKey(resourceName)) {
+            throw new DuplicateResourceNameException();
+        }
+        resList.put(resourceName, resource);
+    }
+
+    public <T> SystemResourceHandler<T> getResourceHandler(Class<? extends Resource<T>> resourceClass, String resourceName){
+        Map<String, Resource<?>> stringResourceMap = resourceMap.get(resourceClass);
+        if (stringResourceMap != null) {
+            Resource<?> resource = stringResourceMap.get(resourceName);
+            if (resource != null){
+                return resourceClass.cast(resource).getHandler();
+            }
+        }
+        return null;
+    }
+
 
     public <T> SystemResourceHandler<T> getResourceHandler(Class<? extends Resource<T>> resourceClass){
-        Resource<?> resource = resourceMap.get(resourceClass);
-        return resourceClass.cast(resource).getHandler();
+        return getResourceHandler(resourceClass, "default");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DuplicateResourceNameException {
         SystemResourceCollection sc = new SystemResourceCollection();
         sc.register(new TaskPool());
         sc.register(new AlgoSet(new TrivialAlgoFactory(null)));
