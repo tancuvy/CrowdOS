@@ -22,7 +22,7 @@ public class SimpleSpatioConstraint implements Constraint {
         if (!(condition instanceof Coordinate)) return false;
         Coordinate coord = (Coordinate) condition;
         return range[0].longitude <= coord.longitude && range[0].latitude <= coord.latitude
-                && coord.longitude < range[1].longitude && coord.latitude < range[0].latitude;
+                && coord.longitude < range[1].longitude && coord.latitude < range[1].latitude;
     }
 
     @Override
