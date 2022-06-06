@@ -1,9 +1,6 @@
 package cn.crowdos.kernel.constraint;
 
-import javafx.scene.layout.CornerRadii;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +38,6 @@ class SimpleSpatioConstraintTest {
     }
 
     @Test
-    @DisplayName("123")
     void getConditionClass() {
         String name = constraint.getConditionClass().getName();
         assertEquals(name, Coordinate.class.getName());

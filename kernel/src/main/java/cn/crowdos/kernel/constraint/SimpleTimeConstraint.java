@@ -1,6 +1,7 @@
 package cn.crowdos.kernel.constraint;
 
 import cn.crowdos.kernel.Decomposer;
+import cn.crowdos.kernel.constraint.wrapper.DateCondition;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,9 +38,10 @@ public class SimpleTimeConstraint implements Constraint{
     }
 
     @Override
-    public Class<Condition> getConditionClass() {
-        return null;
+    public Class<? extends Condition> getConditionClass() {
+        return DateCondition.class;
     }
+
 
     @Override
     public String description() {
