@@ -1,7 +1,7 @@
 package cn.crowdos.kernel.system.resource;
 
 import cn.crowdos.kernel.system.SystemResourceHandler;
-import cn.crowdos.kernel.tasksystem.Task;
+import cn.crowdos.kernel.resource.Task;
 
 import java.util.LinkedList;
 

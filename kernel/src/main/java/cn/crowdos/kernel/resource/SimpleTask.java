@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.tasksystem;
+package cn.crowdos.kernel.resource;
 
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;

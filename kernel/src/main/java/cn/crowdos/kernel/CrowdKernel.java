@@ -2,7 +2,7 @@ package cn.crowdos.kernel;
 
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.SystemResourceCollection;
-import cn.crowdos.kernel.tasksystem.Task;
+import cn.crowdos.kernel.resource.Task;
 
 import java.util.Iterator;
 import java.util.List;

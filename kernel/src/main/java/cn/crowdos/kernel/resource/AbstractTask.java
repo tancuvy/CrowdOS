@@ -1,9 +1,8 @@
-package cn.crowdos.kernel.tasksystem;
+package cn.crowdos.kernel.resource;
 
 import cn.crowdos.kernel.Decomposer;
 import cn.crowdos.kernel.constraint.Condition;
 import cn.crowdos.kernel.constraint.Constraint;
-import cn.crowdos.kernel.resource.Participant;
 
 import java.util.List;
 

@@ -7,8 +7,7 @@ import cn.crowdos.kernel.system.SystemResourceCollection;
 import cn.crowdos.kernel.system.resource.AlgoContainer;
 import cn.crowdos.kernel.system.resource.ParticipantPool;
 import cn.crowdos.kernel.system.resource.TaskPool;
-import cn.crowdos.kernel.tasksystem.Scheduler;
-import cn.crowdos.kernel.tasksystem.Task;
+import cn.crowdos.kernel.resource.Task;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
