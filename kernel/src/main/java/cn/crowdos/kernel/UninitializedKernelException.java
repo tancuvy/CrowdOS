@@ -1,8 +1,8 @@
 package cn.crowdos.kernel;
 
 /**
- * Thrown to indicate that some operation has occurred on an uninitialized {@link CrowdKernel}.
- * the {@link CrowdKernel} should be initialized by {@link CrowdKernel#initial()} before it can
+ * Thrown to indicate that some operation has occurred on an uninitialized {@link Kernel}.
+ * the {@link Kernel} should be initialized by {@link Kernel#initial()} before it can
  * accept messages.
  *
  * <p>{@code UninitializedException} is <em>unchecked
@@ -13,7 +13,7 @@ package cn.crowdos.kernel;
  *
  * @author  loyx
  * @since   1.0.0
- * @see CrowdKernel
+ * @see Kernel
  */
 public class UninitializedKernelException extends RuntimeException{
 

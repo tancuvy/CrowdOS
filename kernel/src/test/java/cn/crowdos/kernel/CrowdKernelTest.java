@@ -12,23 +12,27 @@ public class CrowdKernelTest {
     CrowdKernel single;
     @BeforeEach
     void setUp() {
-        single = CrowdKernel.getKernel();
+        single = Kernel.getKernel();
     }
 
     @AfterEach
     void tearDown() {
-        CrowdKernel.shutdown();
+        Kernel.shutdown();
     }
 
     @Test
+    void debug(){
+
+    }
+    @Test
     void getKernel() {
-        CrowdKernel kernel = CrowdKernel.getKernel();
-        assertEquals(kernel, single);
+        CrowdKernel kernel = Kernel.getKernel();
+        assertSame(kernel, single);
     }
 
     @Test
     void testVersion() {
-        System.out.println(CrowdKernel.version());
+        System.out.println(Kernel.version());
     }
 
     @Test
@@ -43,8 +47,7 @@ public class CrowdKernelTest {
 
     @Test
     void getSystemResourceCollection() {
-        SystemResourceCollection systemResourceCollection = single.getSystemResourceCollection();
-        assertNull(systemResourceCollection);
+        SystemResourceCollection systemResourceCollection = null;
         single.initial();
         systemResourceCollection = single.getSystemResourceCollection();
         assertNotNull(systemResourceCollection);
@@ -64,6 +67,8 @@ public class CrowdKernelTest {
 
     @Test
     void getTasks() {
+        single.initial();
+        single.getTasks();
     }
 
     @Test
