@@ -21,35 +21,12 @@ public class SimpleTask extends AbstractTask{
                 return Collections.singletonList(simpleTask);
             }
 
-            @Override
-            public Iterator<Task> trivialDecomposerIterator() {
-                return new Iterator<Task>() {
-                    boolean singleton = false;
-                    @Override
-                    public boolean hasNext() {
-                        if (!singleton) {
-                            singleton = true;
-                            return true;
-                        }
-                        return false;
-                    }
-
-                    @Override
-                    public Task next() {
-                        return simpleTask;
-                    }
-                };
-            }
 
             @Override
             public List<Task> scaleDecompose(int scale) throws DecomposeException {
                 throw new DecomposeException("nonsupport");
             }
 
-            @Override
-            public Iterator<Task> scaleDecomposerIterator(int scale) throws DecomposeException {
-                throw  new DecomposeException("nonsupport");
-            }
         };
     }
 }

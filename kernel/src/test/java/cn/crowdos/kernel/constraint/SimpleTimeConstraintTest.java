@@ -1,5 +1,7 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.DecomposeException;
+import cn.crowdos.kernel.Decomposer;
 import cn.crowdos.kernel.constraint.wrapper.DateCondition;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +54,13 @@ class SimpleTimeConstraintTest {
 
     @Test
     void decomposer() {
+        Decomposer<Constraint> decomposer = constraint.decomposer();
+        try {
+            for (Constraint sub : decomposer.decompose(10)) {
+                System.out.println(sub);
+            }
+        } catch (DecomposeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

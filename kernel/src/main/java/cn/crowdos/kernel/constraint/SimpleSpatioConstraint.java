@@ -1,10 +1,14 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
+import sun.nio.cs.ext.MacHebrew;
+
+import java.util.*;
 
 public class SimpleSpatioConstraint implements Constraint {
 
-    Coordinate[] range;
+    private final Coordinate[] range;
 
     public SimpleSpatioConstraint(Coordinate topLeft, Coordinate bottomRight) throws InvalidConstraintException {
         if (topLeft.inLine(bottomRight)) throw new InvalidConstraintException();
@@ -37,6 +41,42 @@ public class SimpleSpatioConstraint implements Constraint {
 
     @Override
     public Decomposer<Constraint> decomposer() {
-        return null;
+        return new Decomposer<Constraint>() {
+            @Override
+            public List<Constraint> trivialDecompose() {
+                try {
+                    return Collections.singletonList(new SimpleSpatioConstraint(range[0], range[1]));
+                } catch (InvalidConstraintException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
+                int k = (int) Math.ceil(Math.sqrt(scale));
+                List<Constraint> subConstraints = new ArrayList<>(k*k);
+                double xLen = (range[1].longitude - range[0].longitude)/k;
+                double yLen = (range[1].latitude - range[0].latitude)/k;
+                for (int i = 0; i < k-1; i++) {
+                    double sx = range[0].longitude + i * xLen;
+                    double ex = Math.min(range[0].longitude + (i+1) * xLen, range[1].longitude);
+                    for (int j = 0; j < k-1; j++) {
+                        double sy = range[0].latitude + j * yLen;
+                        double ey = Math.min(range[0].latitude + (j+1)*yLen, range[1].latitude);
+                        try {
+                            subConstraints.add(new SimpleSpatioConstraint(new Coordinate(sx, sy), new Coordinate(ex, ey)));
+                        } catch (InvalidConstraintException e) {
+                            throw new DecomposeException(e);
+                        }
+                    }
+                }
+                return subConstraints;
+            }
+        };
+    }
+
+    @Override
+    public String toString() {
+        return "SpatioConstraint(" + range[0] + "," + range[1] + ')';
     }
 }

@@ -18,4 +18,10 @@ class CoordinateTest {
         assertTrue(c1.inLine(c4));
         assertFalse(c1.inLine(c5));
     }
+
+    @Test
+    void testToString() {
+        Coordinate c1 = new Coordinate(0, 0);
+        System.out.println(c1);
+    }
 }

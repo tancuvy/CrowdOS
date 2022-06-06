@@ -1,11 +1,16 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
 import cn.crowdos.kernel.constraint.wrapper.DateCondition;
+import com.sun.prism.shader.AlphaOne_Color_Loader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class SimpleTimeConstraint implements Constraint{
 
@@ -50,6 +55,38 @@ public class SimpleTimeConstraint implements Constraint{
 
     @Override
     public Decomposer<Constraint> decomposer() {
-        return null;
+        return new Decomposer<Constraint>() {
+            @Override
+            public List<Constraint> trivialDecompose() {
+                try {
+                    return Collections.singletonList(new SimpleTimeConstraint(dateRange[0], dateRange[1]));
+                } catch (InvalidConstraintException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
+                if (scale < 0) throw new DecomposeException("invalid decompose scale");
+                if (scale == 1) return trivialDecompose();
+                long tLen = (long) Math.ceil(1.0*(dateRange[1].getTime() - dateRange[0].getTime()) / scale);
+                List<Constraint> subConstraints = new ArrayList<>(scale);
+                for (int i = 0; i < scale-1; i++) {
+                    long st = dateRange[0].getTime() + i * tLen;
+                    long et = Math.min(dateRange[0].getTime() + (i+1)*tLen, dateRange[1].getTime());
+                    try {
+                        subConstraints.add(new SimpleTimeConstraint(new Date(st), new Date(et)));
+                    } catch (InvalidConstraintException e) {
+                        throw new DecomposeException(e);
+                    }
+                }
+                return subConstraints;
+            }
+        };
+    }
+
+    @Override
+    public String toString() {
+        return "TimeConstraint(" + dateRange[0] + "-" + dateRange[1] + ")";
     }
 }

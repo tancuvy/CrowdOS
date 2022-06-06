@@ -1,5 +1,7 @@
 package cn.crowdos.kernel.constraint;
 
+import cn.crowdos.kernel.DecomposeException;
+import cn.crowdos.kernel.Decomposer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,5 +47,13 @@ class SimpleSpatioConstraintTest {
 
     @Test
     void decomposer() {
+        Decomposer<Constraint> decomposer = constraint.decomposer();
+        try {
+            for (Constraint sub : decomposer.decompose(100)) {
+                System.out.println(sub);
+            }
+        } catch (DecomposeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

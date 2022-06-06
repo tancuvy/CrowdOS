@@ -31,15 +31,6 @@ public interface Decomposer<T> {
     }
 
     /**
-     * <p>Decompose a decomposable and return an iterator that can access compositions.
-     * {@link Decomposer#trivialDecomposerIterator()} by default.
-     * @return Iterator style decompositions.
-     */
-    default Iterator<T> decomposerIterator(){
-        return trivialDecomposerIterator();
-    }
-
-    /**
      * <p>Decompose a decomposable by specified scale. {@link Decomposer#scaleDecompose(int)} by default.
      * @param scale specified decomposition scale.
      * @return List style decompositions.
@@ -49,24 +40,9 @@ public interface Decomposer<T> {
         return scaleDecompose(scale);
     }
 
-    /**
-     * <p>Decompose a decomposable by specified scale an iterator that can access compositions.
-     * {@link Decomposer#scaleDecomposerIterator(int)} by default.
-     * @param scale specified decomposition scale.
-     * @return Iterator style decompositions.
-     * @throws DecomposeException if any exceptions occur during decompose.
-     */
-    default Iterator<T> decomposerIterator(int scale) throws DecomposeException {
-        return scaleDecomposerIterator(scale);
-    }
-
     List<T> trivialDecompose();
 
-    Iterator<T> trivialDecomposerIterator();
-
     List<T> scaleDecompose(int scale) throws DecomposeException;
-
-    Iterator<T> scaleDecomposerIterator(int scale) throws DecomposeException;
 
 
 }

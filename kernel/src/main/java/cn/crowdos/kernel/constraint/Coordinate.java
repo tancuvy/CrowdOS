@@ -25,4 +25,9 @@ public class Coordinate implements Condition{
     public boolean inLine(Coordinate other){
         return this.longitude == other.longitude || this.latitude == other.latitude;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Coo<%.3f, %.3f>", longitude, latitude);
+    }
 }

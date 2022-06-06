@@ -8,7 +8,6 @@ import java.util.function.Function;
  * <p>Thrown by
  * <ul>
  *     <li>{@link Decomposer#decompose(int)}</li>
- *     <li>{@link Decomposer#decomposerIterator(int)}</li>
  * </ul>
  * <p>to indicate something exceptions occurred during the decomposition operation. The most
  * common cause is {@link InvalidConstraintException}.</p> //todo update doc
