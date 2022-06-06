@@ -4,12 +4,15 @@ import cn.crowdos.kernel.algorithms.TrivialAlgoFactory;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.DuplicateResourceNameException;
 import cn.crowdos.kernel.system.SystemResourceCollection;
-import cn.crowdos.kernel.system.SystemResourceHandler;
-import cn.crowdos.kernel.system.resource.*;
+import cn.crowdos.kernel.system.resource.AlgoContainer;
+import cn.crowdos.kernel.system.resource.ParticipantPool;
+import cn.crowdos.kernel.system.resource.TaskPool;
 import cn.crowdos.kernel.tasksystem.Scheduler;
 import cn.crowdos.kernel.tasksystem.Task;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CrowdKernel {
 
@@ -18,10 +21,6 @@ public class CrowdKernel {
 
     private SystemResourceCollection systemResourceCollection;
 
-    public static String version(){
-        return "CrowdOS Kernel v1.0";
-    }
-
     private CrowdKernel(){}
 
     public static CrowdKernel getKernel(){
@@ -29,10 +28,8 @@ public class CrowdKernel {
         kernel = new CrowdKernel();
         return kernel;
     }
-
-    public boolean submit(Task task){
-        if (! initialed) throw new UninitializedKernelException();
-        return true;
+    public static String version(){
+        return "CrowdOS Kernel v1.0";
     }
 
     public void initial(Object...args){
@@ -52,11 +49,48 @@ public class CrowdKernel {
         initial((Object) null);
     }
 
+    public static void shutdown() {
+        kernel = null;
+    }
+
     public SystemResourceCollection getSystemResourceCollection() {
         return systemResourceCollection;
     }
 
-    public void otherOpera(){
-        if (! initialed) throw new UninitializedKernelException();
+    public boolean isInitialed(){
+        return initialed;
+    }
+    public boolean submitTask(Task task){
+        TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
+        resource.add(task);
+        return true;
+    }
+    public List<Task> getTasks(){
+        TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
+        return new ArrayList<>(resource);
+    }
+    public Iterator<Task> getTasksIter(){
+        TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
+        return resource.iterator();
+    }
+    public List<Participant> getTaskAssignmentScheme(Task task){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskAssignment(task);
+    }
+    public List<Participant> getTaskRecommendationScheme(Task task){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskRecommendation(task);
+    }
+    public List<Participant> getTaskParticipantSelectionResult(Task task){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.participantSelection(task);
+    }
+    public List<Participant> getParticipants(){
+        ParticipantPool resource = systemResourceCollection.getResourceHandler(ParticipantPool.class).getResource();
+        return new ArrayList<>(resource);
+    }
+    public Iterator<Participant> getParticipantsIter(){
+        ParticipantPool resource = systemResourceCollection.getResourceHandler(ParticipantPool.class).getResource();
+        return resource.iterator();
     }
 }
