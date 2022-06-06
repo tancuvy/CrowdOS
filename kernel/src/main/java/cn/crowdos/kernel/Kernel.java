@@ -102,11 +102,6 @@ public class Kernel implements CrowdKernel {
         return new ArrayList<>(resource);
     }
     @Override
-    public Iterator<Task> getTasksIter(){
-        TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
-        return resource.iterator();
-    }
-    @Override
     public List<Participant> getTaskAssignmentScheme(Task task){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.taskAssignment(task);
@@ -125,10 +120,5 @@ public class Kernel implements CrowdKernel {
     public List<Participant> getParticipants(){
         ParticipantPool resource = systemResourceCollection.getResourceHandler(ParticipantPool.class).getResource();
         return new ArrayList<>(resource);
-    }
-    @Override
-    public Iterator<Participant> getParticipantsIter(){
-        ParticipantPool resource = systemResourceCollection.getResourceHandler(ParticipantPool.class).getResource();
-        return resource.iterator();
     }
 }

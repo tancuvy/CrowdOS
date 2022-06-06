@@ -15,11 +15,9 @@ public interface CrowdKernel {
     SystemResourceCollection getSystemResourceCollection() ;
     boolean submitTask(Task task);
     List<Task> getTasks();
-    Iterator<Task> getTasksIter();
     List<Participant> getTaskAssignmentScheme(Task task);
     List<Participant> getTaskRecommendationScheme(Task task);
     List<Participant> getTaskParticipantSelectionResult(Task task);
     List<Participant> getParticipants();
-    Iterator<Participant> getParticipantsIter();
 
 }
