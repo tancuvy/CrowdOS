@@ -2,14 +2,11 @@ package cn.crowdos.kernel.resource;
 
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
-import cn.crowdos.kernel.constraint.Condition;
+import cn.crowdos.kernel.common.TimeParticipant;
 import cn.crowdos.kernel.constraint.InvalidConstraintException;
 import cn.crowdos.kernel.constraint.SimpleTimeConstraint;
-import cn.crowdos.kernel.constraint.wrapper.DateCondition;
 import org.junit.jupiter.api.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SimpleTaskTest {
     Task task;
     {
-        SimpleTimeConstraint timeConst = null;
+        SimpleTimeConstraint timeConst;
         try {
             timeConst = new SimpleTimeConstraint("2022.6.1", "2022.6.5");
         } catch (InvalidConstraintException e) {
@@ -55,31 +52,6 @@ class SimpleTaskTest {
 
     @Test
     void canAssignTo() {
-        class TimeParticipant extends AbstractParticipant{
-            @ability
-            final DateCondition activeTime;
-
-            TimeParticipant(String time) {
-                SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-                try {
-                    this.activeTime = new DateCondition(format.parse(time).getTime());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            @Override
-            public boolean hasAbility(Class<? extends Condition> conditionClass) {
-                return conditionClass==DateCondition.class;
-            }
-
-            @Override
-            public Condition getAbility(Class<? extends Condition> conditionClass) {
-                if (!hasAbility(conditionClass))
-                    return null;
-                else return activeTime;
-            }
-        }
 
         TimeParticipant p1 = new TimeParticipant("2022.6.3");
         TimeParticipant p2 = new TimeParticipant("2022.6.10");
@@ -97,3 +69,4 @@ class SimpleTaskTest {
         System.out.println(task.finished());
     }
 }
+

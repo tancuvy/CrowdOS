@@ -68,6 +68,17 @@ public class Scheduler implements Resource<Scheduler> {
 
     @Override
     public SystemResourceHandler<Scheduler> getHandler() {
-        return null;
+        Scheduler scheduler = this;
+        return new SystemResourceHandler<Scheduler>() {
+            @Override
+            public Scheduler getResourceView() {
+                return scheduler;
+            }
+
+            @Override
+            public Scheduler getResource() {
+                return scheduler;
+            }
+        };
     }
 }
