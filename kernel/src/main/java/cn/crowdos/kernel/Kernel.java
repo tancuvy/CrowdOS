@@ -84,16 +84,20 @@ public class Kernel implements CrowdKernel {
     public void initial(){
         initial((Object) null);
     }
-
     @Override
     public SystemResourceCollection getSystemResourceCollection() {
         return systemResourceCollection;
     }
-
     @Override
     public boolean submitTask(Task task){
         TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
         resource.add(task);
+        return true;
+    }
+    @Override
+    public boolean registerParticipant(Participant participant) {
+        ParticipantPool resource = systemResourceCollection.getResourceHandler(ParticipantPool.class).getResource();
+        resource.add(participant);
         return true;
     }
     @Override

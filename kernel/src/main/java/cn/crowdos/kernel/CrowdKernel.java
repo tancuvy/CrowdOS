@@ -1,10 +1,9 @@
 package cn.crowdos.kernel;
 
 import cn.crowdos.kernel.resource.Participant;
-import cn.crowdos.kernel.system.SystemResourceCollection;
 import cn.crowdos.kernel.resource.Task;
+import cn.crowdos.kernel.system.SystemResourceCollection;
 
-import java.util.Iterator;
 import java.util.List;
 
 public interface CrowdKernel {
@@ -14,6 +13,7 @@ public interface CrowdKernel {
     void initial();
     SystemResourceCollection getSystemResourceCollection() ;
     boolean submitTask(Task task);
+    boolean registerParticipant(Participant participant);
     List<Task> getTasks();
     List<Participant> getTaskAssignmentScheme(Task task);
     List<Participant> getTaskRecommendationScheme(Task task);
