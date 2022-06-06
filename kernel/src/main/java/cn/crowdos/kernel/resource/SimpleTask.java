@@ -10,6 +10,7 @@ public class SimpleTask extends AbstractTask{
 
     public SimpleTask(List<Constraint> constraints, TaskDistributionType taskDistributionType) {
         super(constraints, taskDistributionType);
+        status = TaskStatus.READY;
     }
 
     @Override
@@ -24,7 +25,35 @@ public class SimpleTask extends AbstractTask{
 
             @Override
             public List<Task> scaleDecompose(int scale) throws DecomposeException {
-                throw new DecomposeException("nonsupport");
+                List<Task> subTasks = new LinkedList<>();
+                List<Decomposer<Constraint>> decomposers = new ArrayList<Decomposer<Constraint>>(constraints.size()){{
+                    for (Constraint constraint : constraints) {
+                        add(constraint.decomposer());
+                    }
+                }};
+                subTaskHelper(subTasks, decomposers, null, 0, scale);
+                return subTasks;
+            }
+
+            private void subTaskHelper(
+                    List<Task> subTasks,
+                    List<Decomposer<Constraint>> decomposers,
+                    List<Constraint> newConstraints,
+                    int pos,
+                    int scale
+            ) throws DecomposeException {
+                if (pos == 0){
+                    newConstraints = new ArrayList<>(decomposers.size());
+                }
+                if (pos == decomposers.size()){
+                    subTasks.add(new SimpleTask(newConstraints, taskDistributionType));
+                    return;
+                }
+                Decomposer<Constraint> current = decomposers.get(pos);
+                for (Constraint constraint : current.decompose(scale)) {
+                    newConstraints.add(constraint);
+                    subTaskHelper(subTasks, decomposers, newConstraints, pos+1, scale);
+                }
             }
 
         };
