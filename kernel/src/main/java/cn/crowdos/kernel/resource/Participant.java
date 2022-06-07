@@ -10,11 +10,14 @@ public interface Participant {
         DISABLED,
     }
 
+    ParticipantStatus getStatus();
+
+    void setStatus(ParticipantStatus status);
+
     boolean hasAbility(Class<? extends Condition> conditionClass);
 
     Condition getAbility(Class<? extends Condition> conditionClass);
 
     boolean available();
 
-    ParticipantStatus getCurrentStatus();
 }

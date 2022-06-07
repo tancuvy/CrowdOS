@@ -13,4 +13,8 @@ public class DateCondition extends Date implements Condition {
         super(date);
     }
 
+    public DateCondition(String date){
+        super(date);
+    }
+
 }
