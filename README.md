@@ -1,4 +1,4 @@
-# CrowdOS
+# CrowdOS [![license](https://img.shields.io/github/license/loyx/CrowdOS)](https://www.apache.org/licenses/LICENSE-2.0) [![checks](https://img.shields.io/github/checks-status/loyx/CrowdOS/master)]() [![lang](https://img.shields.io/github/languages/top/loyx/CrowdOS)]() [![issues](https://img.shields.io/github/issues/loyx/CrowdOS)]()
 
 CrowdOS is an ubiquitous operating system for [Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing) and
 [Mobile Crowdsensing](https://en.wikipedia.org/wiki/Crowdsensing), which can deal with multiple types of 
