@@ -93,7 +93,7 @@ on Android and IOS.
 if you have any trouble with CrowdOS, the following may be of help to you.
 - Visit our website [CrowdOS.cn](https://www.crowdos.cn/).
 - Check the [reference documentation]().
-- Or send our an email [crowdos_nwpu@163.com]().
+- Or email us: _crowdos_nwpu@163.com_
 
 ## Reporting Issue
 CrowdOS uses GitHub’s integrated issue tracking system to record bugs and feature requests. 
