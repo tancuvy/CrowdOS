@@ -23,6 +23,11 @@ public class Kernel implements CrowdKernel {
 
     private Kernel(){}
 
+    /**
+     * > If the kernel is not initialized, throw an exception when calling any method except `initial` and `isInitialed`
+     *
+     * @return A proxy object that wraps the kernel object.
+     */
     public static CrowdKernel getKernel(){
         if (kernel != null) return kernel;
         Kernel crowdKernel = new Kernel();
@@ -51,10 +56,18 @@ public class Kernel implements CrowdKernel {
         );
         return kernel;
     }
+    /**
+     * This function returns the version of the CrowdOS CrowdKernel.
+     *
+     * @return The version of the CrowdOS kernel.
+     */
     public static String version(){
         return "CrowdOS CrowdKernel v1.0";
     }
 
+    /**
+     * > The shutdown function sets the kernel to null
+     */
     public static void shutdown() {
         kernel = null;
     }
