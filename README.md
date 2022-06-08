@@ -1,6 +1,6 @@
 # CrowdOS [![license](https://img.shields.io/github/license/loyx/CrowdOS)](https://www.apache.org/licenses/LICENSE-2.0) [![checks](https://img.shields.io/github/checks-status/loyx/CrowdOS/master)]() [![lang](https://img.shields.io/github/languages/top/loyx/CrowdOS)]() [![issues](https://img.shields.io/github/issues/loyx/CrowdOS)]()
 
-CrowdOS is an ubiquitous operating system for [Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing) and
+CrowdOS is a ubiquitous operating system for [Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing) and
 [Mobile Crowdsensing](https://en.wikipedia.org/wiki/Crowdsensing), which can deal with multiple types of 
 crowdsourcing problems simultaneously.
 
@@ -57,7 +57,7 @@ public class User extends AbstractParticipant {
     //...
 }
 ```
-3. You need to create the task class as you want and you should either implement the _Task_ interface 
+3. You need to create the task class as you want, and you should either implement the _Task_ interface 
 or inherit directly from the _AbstractTask_ class or any other task class we provide.
 ```java
 import cn.crowdos.kernel.constraint.Constraint;
@@ -92,14 +92,14 @@ on Android and IOS.
 ## Getting Help
 if you have any trouble with CrowdOS, the following may be of help to you.
 - Visit our website [CrowdOS.cn](https://www.crowdos.cn/).
-- Check the [reference documentation]().
+- Check the [reference documentation](https://crowdos.cn/crowdos_doc/public/apidocs/).
 - Or email us: _crowdos_nwpu@163.com_
 
 ## Reporting Issue
-CrowdOS uses GitHub’s integrated issue tracking system to record bugs and feature requests. 
+CrowdOS uses GitHub's integrated issue tracking system to record bugs and feature requests. 
 If you want to raise an issue, please follow the recommendations below:
 - Before you log a bug, please search the issue tracker to see if someone has already reported the problem.
-- If the issue doesn’t already exist, create a new issue.
+- If the issue doesn't already exist, create a new issue.
 - Please provide as much information as possible with the issue report. We like to know the CrowdOS version, 
 operating system, and JVM version you’re using.
 - If you need to paste code or include a stack trace, use Markdown. ``` escapes before and after your text.

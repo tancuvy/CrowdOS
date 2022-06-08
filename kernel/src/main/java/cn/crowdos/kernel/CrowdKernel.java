@@ -6,7 +6,12 @@ import cn.crowdos.kernel.system.SystemResourceCollection;
 
 import java.util.List;
 
-// The interface of the CrowdKernel class.
+/**
+ * CrowdOS is a ubiquitous operating system for Crowdsoucring and Mobile Crowdsensing,
+ * which can deal with multiple types of crowdsourcing problems simultaneously.
+ * CrowdOS kernel provide three core frameworks including Task Resolution and
+ * Assignment Framework (TRAF), Integrated Resource Management (IRM), and Task Result quality Optimization (TRO).
+ */
 public interface CrowdKernel {
     // CrowdKernel APIs
 
