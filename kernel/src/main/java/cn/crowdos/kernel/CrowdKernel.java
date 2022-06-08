@@ -19,6 +19,7 @@ public interface CrowdKernel {
 
     /**
      * Initial takes any number of arguments and returns the first one.
+     * @param args initial args
      */
     void initial(Object...args);
 

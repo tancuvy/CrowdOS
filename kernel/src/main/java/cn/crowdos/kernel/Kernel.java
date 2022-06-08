@@ -24,7 +24,7 @@ public class Kernel implements CrowdKernel {
     private Kernel(){}
 
     /**
-     * > If the kernel is not initialized, throw an exception when calling any method except `initial` and `isInitialed`
+     *  If the kernel is not initialized, throw an exception when calling any method except `initial` and `isInitialed`
      *
      * @return A proxy object that wraps the kernel object.
      */
@@ -66,7 +66,7 @@ public class Kernel implements CrowdKernel {
     }
 
     /**
-     * > The shutdown function sets the kernel to null
+     *  The shutdown function sets the kernel to null
      */
     public static void shutdown() {
         kernel = null;

@@ -19,8 +19,8 @@
 
     <distributionManagement>
         <site>
-            <id>internal-site</id>
-            <url>scp://10.68.118.26/CrowdOS/site/public</url>
+            <id>crowdos.cn</id>
+            <url>scp://crowdos.cn/data/www/crowdos_doc/public</url>
         </site>
     </distributionManagement>
 

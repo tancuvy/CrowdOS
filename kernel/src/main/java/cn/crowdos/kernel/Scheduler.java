@@ -39,7 +39,7 @@ public class Scheduler implements Resource<Scheduler> {
     }
 
     /**
-     * > For each task in the task pool, recommend a list of participants to complete the task
+     *  For each task in the task pool, recommend a list of participants to complete the task
      *
      * @return A list of lists of participants.
      */
@@ -53,7 +53,7 @@ public class Scheduler implements Resource<Scheduler> {
     }
 
     /**
-     * > For each task in the task pool, assign a list of participants to it
+     *  For each task in the task pool, assign a list of participants to it
      *
      * @return A list of lists of participants.
      */
