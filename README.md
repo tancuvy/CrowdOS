@@ -91,7 +91,7 @@ on Android and IOS.
 
 ## Getting Help
 if you have any trouble with CrowdOS, the following may be of help to you.
-- Visit our website [CrowdOS.cn](https://www.crowdos.cn/).
+- Visit our website [www.crowdos.cn](https://www.crowdos.cn/).
 - Check the [reference documentation](https://crowdos.cn/crowdos_doc/public/apidocs/).
 - Or email us: _crowdos_nwpu@163.com_
 
@@ -124,6 +124,6 @@ crowdos-dataservice. Coming soon.
 Coming soon.
 
 ## Guides
-The [crowdos.cn](https://www.crowdos.cn/) site contains some detail information of CrowdOS.
+The [www.crowdos.cn](https://www.crowdos.cn/) site contains some detail information of CrowdOS.
 ## License
 The CrowdOS Project is released under version 2.0 of the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
