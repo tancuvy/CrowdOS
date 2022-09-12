@@ -3,7 +3,6 @@ package cn.crowdos.kernel.constraint;
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
 import cn.crowdos.kernel.constraint.wrapper.DateCondition;
-import com.sun.prism.shader.AlphaOne_Color_Loader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

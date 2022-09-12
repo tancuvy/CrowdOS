@@ -2,8 +2,6 @@ package cn.crowdos.kernel;
 
 import cn.crowdos.kernel.constraint.InvalidConstraintException;
 
-import java.util.function.Function;
-
 /**
  * <p>Thrown by
  * <ul>
