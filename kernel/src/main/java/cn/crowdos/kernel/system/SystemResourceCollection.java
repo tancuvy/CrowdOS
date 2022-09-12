@@ -1,9 +1,6 @@
 package cn.crowdos.kernel.system;
 
-import cn.crowdos.kernel.algorithms.AlgoFactory;
-import cn.crowdos.kernel.algorithms.TrivialAlgoFactory;
 import cn.crowdos.kernel.system.resource.Resource;
-import cn.crowdos.kernel.system.resource.TaskPool;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,9 +2,10 @@ package cn.crowdos.kernel.constraint;
 
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
-import sun.nio.cs.ext.MacHebrew;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SimpleSpatioConstraint implements Constraint {
 

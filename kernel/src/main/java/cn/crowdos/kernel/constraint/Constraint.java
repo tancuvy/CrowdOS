@@ -1,7 +1,6 @@
 package cn.crowdos.kernel.constraint;
 
 import cn.crowdos.kernel.Decomposable;
-import jdk.nashorn.internal.codegen.ObjectClassGenerator;
 
 /**
  * <p>In <i>Mobile CrowdSensing</i> (MCS), there are a lots of constraints.
