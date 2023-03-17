@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 public class CharacterCondition extends PrimitiveCondition<Character>{
     protected CharacterCondition(Character primitive) {

@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 public class ShortCondition extends PrimitiveCondition<Short>{
     protected ShortCondition(Short primitive) {

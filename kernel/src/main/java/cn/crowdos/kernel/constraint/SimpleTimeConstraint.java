@@ -2,7 +2,7 @@ package cn.crowdos.kernel.constraint;
 
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
-import cn.crowdos.kernel.constraint.wrapper.DateCondition;
+import cn.crowdos.kernel.wrapper.DateCondition;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,6 +67,7 @@ public class SimpleTimeConstraint implements Constraint{
             @Override
             public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
                 if (scale < 0) throw new DecomposeException("invalid decompose scale");
+
                 if (scale == 1) return trivialDecompose();
                 long tLen = (long) Math.ceil(1.0*(dateRange[1].getTime() - dateRange[0].getTime()) / scale);
                 List<Constraint> subConstraints = new ArrayList<>(scale);
