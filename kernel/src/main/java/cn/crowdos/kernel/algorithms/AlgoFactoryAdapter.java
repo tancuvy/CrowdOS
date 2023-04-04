@@ -8,11 +8,11 @@ import cn.crowdos.kernel.resource.Task;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TrivialAlgoFactory implements AlgoFactory{
+public class AlgoFactoryAdapter implements AlgoFactory{
 
     private final SystemResourceCollection resourceCollection;
 
-    public TrivialAlgoFactory(SystemResourceCollection resourceCollection){
+    public AlgoFactoryAdapter(SystemResourceCollection resourceCollection){
         this.resourceCollection = resourceCollection;
     }
     @Override
