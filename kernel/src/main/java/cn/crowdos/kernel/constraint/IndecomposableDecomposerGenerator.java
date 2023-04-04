@@ -23,7 +23,6 @@ import java.util.List;
  * code for IndecomposableConstraint 1 is shown below.
  *
  * <pre>{@code
- * package cn.crowdos.kernel.constraint;
  * import cn.crowdos.kernel.Decomposer;
  * import java.util.ArrayList;
  *
@@ -39,7 +38,7 @@ import java.util.List;
  *      }
  *
  *      ... // other methods
- *   } //todo update doc
+ *   }
  * }</pre>
  * <p>After that the constraint class will be involved in the kernel's task
  * allocation process.</p>
@@ -50,9 +49,9 @@ import java.util.List;
 class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
     private final ArrayList<Class<?>> argsClass;
     private final ArrayList<Object> args;
-    private final Class<IndecomposableConstraint> ucClass;
+    private final Class<Constraint> ucClass;
 
-    public IndecomposableDecomposerGenerator(ArrayList<Class<?>> argsClass, ArrayList<Object> args, Class<IndecomposableConstraint> ucClass) {
+    public IndecomposableDecomposerGenerator(ArrayList<Class<?>> argsClass, ArrayList<Object> args, Class<Constraint> ucClass) {
         this.argsClass = argsClass;
         this.args = args;
         this.ucClass = ucClass;
@@ -61,7 +60,7 @@ class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
     @Override
     public List<Constraint> trivialDecompose() {
 
-        IndecomposableConstraint uc;
+        Constraint uc;
         try {
             int len = argsClass.size();
             Class<?>[] aClass = new Class[len];
@@ -71,7 +70,7 @@ class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
                 arg[i] = args.get(i);
             }
 
-            Constructor<IndecomposableConstraint> constructor = ucClass.getConstructor(aClass);
+            Constructor<Constraint> constructor = ucClass.getConstructor(aClass);
             uc = constructor.newInstance(arg);
         } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException |
                  IllegalArgumentException | InvocationTargetException e) {
