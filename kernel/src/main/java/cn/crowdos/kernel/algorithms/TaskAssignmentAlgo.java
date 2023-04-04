@@ -3,6 +3,7 @@ package cn.crowdos.kernel.algorithms;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @FunctionalInterface
@@ -14,4 +15,11 @@ public interface TaskAssignmentAlgo {
      * @return A list of participants.
      */
     List<Participant> getAssignmentScheme(Task task);
+    default List<List<Participant>> getAssignmentScheme(ArrayList<Task> tasks){
+        List<List<Participant>> candidate = new ArrayList<List<Participant>>();
+        for(Task task : tasks){
+            candidate.add(getAssignmentScheme(task));
+        }
+        return candidate;
+    };
 }
