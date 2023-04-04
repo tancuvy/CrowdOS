@@ -75,7 +75,9 @@ public class Scheduler implements Resource<Scheduler> {
     public List<Participant> participantSelection(Task task){
         return participantSelectionAlgo.getCandidates(task);
     }
-
+    public List<List<Participant>> participantSelection(ArrayList<Task> tasks){
+        return participantSelectionAlgo.getCandidates(tasks);
+    }
     /**
      * This function returns a list of participants that are recommended for a given task.
      *
@@ -85,7 +87,9 @@ public class Scheduler implements Resource<Scheduler> {
     public List<Participant> taskRecommendation(Task task){
         return taskRecommendationAlgo.getRecommendationScheme(task);
     }
-
+    public List<List<Participant>> taskRecommendation(ArrayList<Task> tasks){
+        return taskRecommendationAlgo.getRecommendationScheme(tasks);
+    }
     /**
      * This function returns a list of participants that are assigned to a task.
      *
@@ -95,7 +99,9 @@ public class Scheduler implements Resource<Scheduler> {
     public List<Participant> taskAssignment(Task task){
         return taskAssignmentAlgo.getAssignmentScheme(task);
     }
-
+    public List<List<Participant>> taskAssignment(ArrayList<Task> tasks){
+        return taskAssignmentAlgo.getAssignmentScheme(tasks);
+    }
     /**
      * This function returns the AlgoFactory object that was created in the constructor.
      *
