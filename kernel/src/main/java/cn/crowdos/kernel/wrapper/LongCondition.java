@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 public class LongCondition extends PrimitiveCondition<Long>{
     protected LongCondition(Long primitive) {

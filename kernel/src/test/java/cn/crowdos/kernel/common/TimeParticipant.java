@@ -1,7 +1,7 @@
 package cn.crowdos.kernel.common;
 
 import cn.crowdos.kernel.constraint.Condition;
-import cn.crowdos.kernel.constraint.wrapper.DateCondition;
+import cn.crowdos.kernel.wrapper.DateCondition;
 import cn.crowdos.kernel.resource.AbstractParticipant;
 import cn.crowdos.kernel.resource.ability;
 

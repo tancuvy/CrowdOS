@@ -2,7 +2,7 @@ package cn.crowdos.kernel.constraint;
 
 import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
-import cn.crowdos.kernel.constraint.wrapper.DateCondition;
+import cn.crowdos.kernel.wrapper.DateCondition;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;

@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 import cn.crowdos.kernel.constraint.Condition;
 

@@ -1,5 +1,4 @@
 package cn.crowdos.kernel;
-
 import java.util.Iterator;
 import java.util.List;
 

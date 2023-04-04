@@ -1,9 +1,7 @@
 package cn.crowdos.kernel.constraint;
 
-import cn.crowdos.kernel.DecomposeException;
 import cn.crowdos.kernel.Decomposer;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,25 +51,9 @@ public class SimpleSpatioConstraint implements Constraint {
             }
 
             @Override
-            public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
-                int k = (int) Math.ceil(Math.sqrt(scale));
-                List<Constraint> subConstraints = new ArrayList<>(k*k);
-                double xLen = (range[1].longitude - range[0].longitude)/k;
-                double yLen = (range[1].latitude - range[0].latitude)/k;
-                for (int i = 0; i < k-1; i++) {
-                    double sx = range[0].longitude + i * xLen;
-                    double ex = Math.min(range[0].longitude + (i+1) * xLen, range[1].longitude);
-                    for (int j = 0; j < k-1; j++) {
-                        double sy = range[0].latitude + j * yLen;
-                        double ey = Math.min(range[0].latitude + (j+1)*yLen, range[1].latitude);
-                        try {
-                            subConstraints.add(new SimpleSpatioConstraint(new Coordinate(sx, sy), new Coordinate(ex, ey)));
-                        } catch (InvalidConstraintException e) {
-                            throw new DecomposeException(e);
-                        }
-                    }
-                }
-                return subConstraints;
+            public List<Constraint> scaleDecompose(int scale) {
+                //waring
+                return this.trivialDecompose();
             }
         };
     }

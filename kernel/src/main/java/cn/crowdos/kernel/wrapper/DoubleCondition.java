@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 public class DoubleCondition extends PrimitiveCondition<Double>{
     protected DoubleCondition(Double primitive) {

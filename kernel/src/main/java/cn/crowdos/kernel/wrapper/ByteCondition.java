@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.constraint.wrapper;
+package cn.crowdos.kernel.wrapper;
 
 public class ByteCondition extends PrimitiveCondition<Byte>{
     protected ByteCondition(Byte primitive) {
