@@ -4,6 +4,7 @@ import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
 import cn.crowdos.kernel.system.SystemResourceCollection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,6 +63,9 @@ public interface CrowdKernel {
      * @return A list of participants.
      */
     List<Participant> getTaskAssignmentScheme(Task task);
+
+    List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks);
+
     /**
      * Given a task, return a list of participants that are recommended to work on that task.
      *
@@ -69,6 +73,9 @@ public interface CrowdKernel {
      * @return A list of participants.
      */
     List<Participant> getTaskRecommendationScheme(Task task);
+
+    List<List<Participant>> getTaskRecommendationScheme(ArrayList<Task> tasks);
+
     /**
      * Get the participant selection result for the given task.
      *
@@ -76,6 +83,9 @@ public interface CrowdKernel {
      * @return A list of participants.
      */
     List<Participant> getTaskParticipantSelectionResult(Task task);
+
+    List<List<Participant>> getTaskParticipantSelectionResult(ArrayList<Task> tasks);
+
     /**
      * Get a list of all the participants in the conversation.
      *
