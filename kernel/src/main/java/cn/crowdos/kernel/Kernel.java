@@ -123,15 +123,27 @@ public class Kernel implements CrowdKernel {
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.taskAssignment(task);
     }
+    public List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskAssignment(tasks);
+    }
     @Override
     public List<Participant> getTaskRecommendationScheme(Task task){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.taskRecommendation(task);
     }
+    public List<List<Participant>> getTaskRecommendationScheme(ArrayList<Task> tasks){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskRecommendation(tasks);
+    }
     @Override
     public List<Participant> getTaskParticipantSelectionResult(Task task){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.participantSelection(task);
+    }
+    public List<List<Participant>> getTaskParticipantSelectionResult(ArrayList<Task> tasks){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.participantSelection(tasks);
     }
     @Override
     public List<Participant> getParticipants(){
