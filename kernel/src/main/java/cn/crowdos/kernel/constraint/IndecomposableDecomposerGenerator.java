@@ -23,22 +23,21 @@ import java.util.List;
  * code for IndecomposableConstraint 1 is shown below.
  *
  * <pre>{@code
- * import cn.crowdos.kernel.Decomposer;
- * import java.util.ArrayList;
+ *   import cn.crowdos.kernel.Decomposer;
  *
- * public class IndecomposableConstraint implements Constraint {
+ *   public class IndecomposableConstraint implements Constraint {
  *
- *   @Override
- *   public Decomposer<Constraint> decomposer() {
- *      ArrayList<Class<?>> argsClass = new ArrayList<>();
- *      ArrayList<Object> args = new ArrayList<>();
- *      Class<IndecomposableConstraint> urgClass = IndecomposableConstraint.class;
- *      Field[] fields = urgClass.getDeclaredFields();
+ *      @Override
+ *      public Decomposer<Constraint> decomposer() {
+ *          ArrayList<Class<?>> argsClass = new ArrayList<>();
+ *          ArrayList<Object> args = new ArrayList<>();
+ *          Class<IndecomposableConstraint> urgClass = IndecomposableConstraint.class;
+ *          Field[] fields = urgClass.getDeclaredFields();
  *          return new IndecomposableDecomposerGenerator(argsClass,args,urgClass);
  *      }
  *
  *      ... // other methods
- *   }
+ *  }
  * }</pre>
  * <p>After that the constraint class will be involved in the kernel's task
  * allocation process.</p>
