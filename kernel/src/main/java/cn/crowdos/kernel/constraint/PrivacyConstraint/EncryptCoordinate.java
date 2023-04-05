@@ -14,13 +14,19 @@ public class EncryptCoordinate implements Condition {
         this.encryptedlatitude = encryptedlatitude;
     }
 
+
     public EncryptCoordinate(double longitude,double latitude){
         Paillier paillier = new Paillier();
         this.encryptedlongitude = Integer.valueOf(String.valueOf(paillier.encrypt(longitude)));
         this.encryptedlatitude = Integer.valueOf(String.valueOf(paillier.encrypt(latitude)));
     }
 
+    @Override
+    public int hashCode() {
+        return this.encryptedlatitude+this.encryptedlongitude;
+    }
 
+    @Override
     public boolean equals(Object obj){
         if(this == obj) return true;
         if (obj instanceof EncryptCoordinate){
