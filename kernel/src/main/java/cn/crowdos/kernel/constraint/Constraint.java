@@ -6,7 +6,7 @@ import cn.crowdos.kernel.Decomposable;
  * <p>In <i>Mobile CrowdSensing</i> (MCS), there are a lots of constraints.
  * For task, there exits Spatial constraint, Temporal constraint or
  * Sampling constraint. For participant, there are some special
- * constraints, such as the number of tasks that workers can
+ * constraints, such as the number of tasks that participants can
  * perform simultaneously, or the maximum distance a participant can
  * move. For sensor, there are constraints on sensor accuracy and type.</p>
  *
@@ -22,8 +22,8 @@ import cn.crowdos.kernel.Decomposable;
  * <ol>
  *     <li>Participants need to complete the task within the required time.</li>
  *     <li>Participants should have sensors that can satisfy the task requirements.</li>
- *     <li>The total movement path of workers should not exceed the limit.</li>
- *     <li>Each subtask should be performed γ times independently by different workers.</li>
+ *     <li>The total movement path of participants  should not exceed the limit.</li>
+ *     <li>Each subtask should be performed γ times independently by different participants .</li>
  * </ol>
  *
  * Each Constraint can map to a class that implement interface {@code Constraint}. For example, the

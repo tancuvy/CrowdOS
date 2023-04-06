@@ -12,7 +12,7 @@ public interface TaskAssignmentAlgo {
      * Given a task, return a list of workers that are assigned to the task.
      *
      * @param task The task for which you want to get the assignment scheme.
-     * @return A list of workers.
+     * @return A list of participants .
      */
     List<Participant> getAssignmentScheme(Task task);
     default List<List<Participant>> getAssignmentScheme(ArrayList<Task> tasks){
