@@ -1,13 +1,12 @@
 package cn.crowdos.kernel;
 
+import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentive;
+import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentiveImpl;
 import cn.crowdos.kernel.algorithms.AlgoFactoryAdapter;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.DuplicateResourceNameException;
 import cn.crowdos.kernel.system.SystemResourceCollection;
-import cn.crowdos.kernel.system.resource.AlgoContainer;
-import cn.crowdos.kernel.system.resource.MissionHistory;
-import cn.crowdos.kernel.system.resource.ParticipantPool;
-import cn.crowdos.kernel.system.resource.TaskPool;
+import cn.crowdos.kernel.system.resource.*;
 import cn.crowdos.kernel.resource.Task;
 
 import java.lang.reflect.InvocationHandler;
@@ -89,6 +88,7 @@ public class Kernel implements CrowdKernel {
             systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)));
             systemResourceCollection.register(new Scheduler(systemResourceCollection));
             systemResourceCollection.register(new MissionHistory());
+            systemResourceCollection.register(new TrustBasedIncentiveImpl());
         } catch (DuplicateResourceNameException e) {
             throw new RuntimeException(e);
         }
@@ -125,6 +125,21 @@ public class Kernel implements CrowdKernel {
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.taskAssignment(task);
     }
+    @Override
+    public Map<Participant, Double> getTaskIncentiveAssignmentScheme(Task task , Double rewards){
+
+        MissionHistory resource = systemResourceCollection.getResourceHandler(MissionHistory.class).getResource();
+        TrustBasedIncentive tbi =  systemResourceCollection.getResourceHandler(TrustBasedIncentive.class).getResource();
+
+        List<Mission> missions = resource.getMissionsByTask(task);
+        Mission firstMission = missions.get(0);
+        Participant firstSubmitParticipant = firstMission.getFirstSubmitParticipant();
+        List<Participant> participants = firstMission.getParticipants();
+
+        tbi.allocateRewards(rewards,task,firstSubmitParticipant,participants);
+        return tbi.IncentiveAssignment();
+    }
+
     @Override
     public List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();

@@ -3,9 +3,9 @@ package cn.crowdos.kernel;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
 import cn.crowdos.kernel.system.SystemResourceCollection;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * CrowdOS is a ubiquitous operating system for Crowdsoucring and Mobile Crowdsensing,
@@ -63,6 +63,8 @@ public interface CrowdKernel {
      * @return A list of participants.
      */
     List<Participant> getTaskAssignmentScheme(Task task);
+
+    Map<Participant, Double> getTaskIncentiveAssignmentScheme(Task task , Double rewards);
 
     List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks);
 

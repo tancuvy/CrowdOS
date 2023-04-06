@@ -22,8 +22,8 @@ import cn.crowdos.kernel.Decomposable;
  * <ol>
  *     <li>Participants need to complete the task within the required time.</li>
  *     <li>Participants should have sensors that can satisfy the task requirements.</li>
- *     <li>The total movement path of participants should not exceed the limit.</li>
- *     <li>Each subtask should be performed γ times independently by different participants.</li>
+ *     <li>The total movement path of participants  should not exceed the limit.</li>
+ *     <li>Each subtask should be performed γ times independently by different participants .</li>
  * </ol>
  *
  * Each Constraint can map to a class that implement interface {@code Constraint}. For example, the

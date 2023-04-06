@@ -9,10 +9,10 @@ import java.util.List;
 @FunctionalInterface
 public interface TaskRecommendationAlgo {
     /**
-     * Given a task, return a list of participants that are recommended to work on the task.
+     * Given a task, return a list of workers that are recommended to work on the task.
      *
      * @param task The task for which you want to get the recommendation scheme.
-     * @return A list of participants.
+     * @return A list of participants .
      */
     List<Participant> getRecommendationScheme(Task task);
     default List<List<Participant>> getRecommendationScheme(ArrayList<Task> tasks){
