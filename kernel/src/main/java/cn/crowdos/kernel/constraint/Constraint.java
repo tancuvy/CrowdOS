@@ -54,7 +54,12 @@ import cn.crowdos.kernel.Decomposable;
  */
 public interface Constraint extends Decomposable<Constraint> {
     //todo doc
-    boolean satisfy(Condition condition);
+    default boolean satisfy(Condition condition){
+        return false;
+    }
+    default boolean satisfy(){
+        return false;
+    }
 
     Class<? extends Condition> getConditionClass();
 
