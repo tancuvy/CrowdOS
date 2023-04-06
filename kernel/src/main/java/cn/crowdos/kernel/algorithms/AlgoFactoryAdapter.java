@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AlgoFactoryAdapter implements AlgoFactory{
 
-    private final SystemResourceCollection resourceCollection;
+    protected final SystemResourceCollection resourceCollection;
 
     public AlgoFactoryAdapter(SystemResourceCollection resourceCollection){
         this.resourceCollection = resourceCollection;

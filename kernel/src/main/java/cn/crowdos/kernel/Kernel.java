@@ -1,6 +1,9 @@
 package cn.crowdos.kernel;
 
 import cn.crowdos.kernel.algorithms.AlgoFactoryAdapter;
+import cn.crowdos.kernel.algorithms.PTMostFactory;
+import cn.crowdos.kernel.algorithms.T_MostFactory;
+import cn.crowdos.kernel.algorithms.T_RandomFactory;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.DuplicateResourceNameException;
 import cn.crowdos.kernel.system.SystemResourceCollection;
@@ -89,6 +92,9 @@ public class Kernel implements CrowdKernel {
             systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)));
             systemResourceCollection.register(new Scheduler(systemResourceCollection));
             systemResourceCollection.register(new MissionHistory());
+            systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)));
+            systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)));
+            systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)));
         } catch (DuplicateResourceNameException e) {
             throw new RuntimeException(e);
         }

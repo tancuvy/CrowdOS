@@ -27,6 +27,12 @@ public class Coordinate implements Condition{
         return this.longitude == other.longitude || this.latitude == other.latitude;
     }
 
+    public double euclideanDistance(Coordinate other){
+        double dLon = longitude - other.longitude;
+        double dLat = latitude - other.latitude;
+        return dLon * dLon + dLat * dLat;
+    }
+
     @Override
     public String toString() {
         return String.format("Coo<%.3f, %.3f>", longitude, latitude);
