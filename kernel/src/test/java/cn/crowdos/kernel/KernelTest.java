@@ -1,8 +1,5 @@
 package cn.crowdos.kernel;
 
-import cn.crowdos.kernel.CrowdKernel;
-import cn.crowdos.kernel.Kernel;
-import cn.crowdos.kernel.UninitializedKernelException;
 import cn.crowdos.kernel.common.TimeParticipant;
 import cn.crowdos.kernel.constraint.InvalidConstraintException;
 import cn.crowdos.kernel.constraint.SimpleTimeConstraint;
@@ -11,12 +8,8 @@ import cn.crowdos.kernel.resource.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class KernelTest {
 
@@ -42,7 +35,7 @@ public class KernelTest {
             SimpleTimeConstraint timeConst = new SimpleTimeConstraint("2022.6.1", "2022.6.5");
             SimpleTask t1 = new SimpleTask(Collections.singletonList(timeConst), Task.TaskDistributionType.RECOMMENDATION);
             timeConst = new SimpleTimeConstraint("2022.6.2", "2022.6.4");
-            SimpleTask t2 = new SimpleTask(Collections.singletonList(timeConst), Task.TaskDistributionType.ASSIGNMENT);
+            SimpleTask t2 = new SimpleTask(Collections.singletonList(timeConst), Task.TaskDistributionType.ASSIGNMENT );
             kernel.submitTask(t1);
             kernel.submitTask(t2);
         } catch (InvalidConstraintException e) {

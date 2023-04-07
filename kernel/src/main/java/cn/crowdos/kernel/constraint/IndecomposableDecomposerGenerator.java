@@ -32,7 +32,6 @@ import java.util.List;
  *          ArrayList<Class<?>> argsClass = new ArrayList<>();
  *          ArrayList<Object> args = new ArrayList<>();
  *          Class<IndecomposableConstraint> urgClass = IndecomposableConstraint.class;
- *          Field[] fields = urgClass.getDeclaredFields();
  *          return new IndecomposableDecomposerGenerator(argsClass,args,urgClass);
  *      }
  *
@@ -45,12 +44,12 @@ import java.util.List;
  * @since 1.0.2
  * @author yuzy
  */
-class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
-    private final ArrayList<Class<?>> argsClass;
-    private final ArrayList<Object> args;
-    private final Class<Constraint> ucClass;
+public class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
+    private final List<Class<?>> argsClass;
+    private final List<Object> args;
+    private final Class<? extends Constraint> ucClass;
 
-    public IndecomposableDecomposerGenerator(ArrayList<Class<?>> argsClass, ArrayList<Object> args, Class<Constraint> ucClass) {
+    public IndecomposableDecomposerGenerator(List<Class<?>> argsClass, List<Object> args, Class<? extends Constraint> ucClass) {
         this.argsClass = argsClass;
         this.args = args;
         this.ucClass = ucClass;
@@ -69,7 +68,7 @@ class IndecomposableDecomposerGenerator implements Decomposer<Constraint> {
                 arg[i] = args.get(i);
             }
 
-            Constructor<Constraint> constructor = ucClass.getConstructor(aClass);
+            Constructor<? extends Constraint> constructor = ucClass.getConstructor(aClass);
             uc = constructor.newInstance(arg);
         } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException |
                  IllegalArgumentException | InvocationTargetException e) {

@@ -31,6 +31,10 @@ public class Mission {
         return submitParticipants.get(0);
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
     public void updateSubmit(Participant participant) throws MissionUpdateException {
         updateSubmit(participant, new Date());
     }
