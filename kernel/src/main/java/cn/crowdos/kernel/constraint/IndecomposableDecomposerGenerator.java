@@ -22,22 +22,22 @@ import java.util.List;
  * Each IndecomposableConstraint can map to a class that implement interface {@code Constraint}. For example, the
  * code for IndecomposableConstraint 1 is shown below.
  *
- * <pre>{@code
+ * <pre>
  *   import cn.crowdos.kernel.Decomposer;
  *
  *   public class IndecomposableConstraint implements Constraint {
  *
- *      @Override
- *      public Decomposer<Constraint> decomposer() {
- *          ArrayList<Class<?>> argsClass = new ArrayList<>();
- *          ArrayList<Object> args = new ArrayList<>();
- *          Class<IndecomposableConstraint> urgClass = IndecomposableConstraint.class;
+ *      &#64;Override
+ *      public Decomposer&#60;Constraint&#62; decomposer() {
+ *          ArrayList&#60;Class&#60;?&#62;&#62; argsClass = new ArrayList&#60;&#62;();
+ *          ArrayList&#60;Object&#62; args = new ArrayList&#60;&#62;();
+ *          Class&#60;IndecomposableConstraint&#62; urgClass = IndecomposableConstraint.class;
  *          return new IndecomposableDecomposerGenerator(argsClass,args,urgClass);
  *      }
- *
  *      ... // other methods
- *  }
- * }</pre>
+ *   }
+ * </pre>
+ *
  * <p>After that the constraint class will be involved in the kernel's task
  * allocation process.</p>
  *
