@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * @author wushengjie
- * @date 2022/11/24
  */
 public class T_Random {
 
@@ -233,7 +232,7 @@ public class T_Random {
     /**
      * 判断该工人是否可以再接受任务，并将该行元素全设为最大
      *
-     * @param workerIndex
+     * @param workerIndex workerIndex
      * @return boolean
      */
     public boolean isAssignWorker(int workerIndex) {

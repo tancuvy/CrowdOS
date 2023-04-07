@@ -10,7 +10,6 @@ import java.util.*;
  * GGA-I算法主体
  *
  * @author wushengjie
- * @date 2022/11/21
  */
 public class GGA_I_Main {
 
@@ -216,10 +215,8 @@ public class GGA_I_Main {
 
     /**
      * 交叉
-     * 当随机数>pcl，小于pch时，随机找两个个体出来进行基因交叉互换
+     * 当随机数&gt;pcl，小于pch时，随机找两个个体出来进行基因交叉互换
      *
-     * @param population
-     * @param random
      */
 
     public void crossover(List<Individual> population, Random random) {
@@ -291,7 +288,6 @@ public class GGA_I_Main {
     /**
      * 交叉完修复个体，使其满足约束条件
      *
-     * @param individual
      */
     public void repairIndividual(Individual individual) {
 
@@ -333,8 +329,6 @@ public class GGA_I_Main {
     /**
      * 变异：随机交换个体基因的两个元素
      *
-     * @param population
-     * @param random
      */
     public void mutate(List<Individual> population, Random random) {
         for (Individual individual : population) {
@@ -350,7 +344,6 @@ public class GGA_I_Main {
     /**
      * 深拷贝对象
      *
-     * @param srcObject
      * @return {@code Object}
      */
     public Object deepClone(Object srcObject) {

@@ -5,7 +5,6 @@ import java.util.*;
 
 /**
  * @author wushengjie
- * @date 2022/11/24
  */
 public class T_Most {
 
@@ -200,7 +199,7 @@ public class T_Most {
      * 2、用Collections工具类的sort方法排序
      * 3、遍历排序好的list，将每组key，value放进LinkedHashMap(Map的实现类只有LinkedHashMap是根据插入顺序来存储)
      *
-     * @param map
+     * @param map map
      * @return {@code Map<Integer, Double>}
      */
     public Map<Integer, Double> sortMap(Map<Integer, Double> map) {
@@ -230,7 +229,7 @@ public class T_Most {
     /**
      * 判断该工人是否可以再接受任务，并将该行元素全设为最大
      *
-     * @param workerIndex
+     * @param workerIndex workerIndex
      * @return boolean
      */
     public boolean isAssignWorker(int workerIndex) {

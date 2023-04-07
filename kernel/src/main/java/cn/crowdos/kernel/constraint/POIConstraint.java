@@ -42,10 +42,7 @@ public class POIConstraint implements Constraint{
         };
     }
 
-    /**
-     * @param condition
-     * @return
-     */
+
     @Override
     public boolean satisfy(Condition condition) {
         if (! ( condition instanceof Coordinate)) return false;
@@ -53,17 +50,13 @@ public class POIConstraint implements Constraint{
         return participantLocation.euclideanDistance(location) <= satisfyRadius * satisfyRadius;
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public Class<? extends Condition> getConditionClass() {
         return Coordinate.class;
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public String description() {
         return "POI Constraint";

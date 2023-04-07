@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * @author wushengjie
- * @date 2022/11/24
  */
 public class PT_Most {
 
@@ -320,7 +319,7 @@ public class PT_Most {
      * 2、用Collections工具类的sort方法排序
      * 3、遍历排序好的list，将每组key，value放进LinkedHashMap(Map的实现类只有LinkedHashMap是根据插入顺序来存储)
      *
-     * @param map
+     * @param map map
      * @return {@code Map<Integer, Double>}
      */
     public Map<Integer, Double> sortMap(Map<Integer, Double> map) {
@@ -350,7 +349,7 @@ public class PT_Most {
     /**
      * 判断该工人是否还能接受，并将该行元素全设为最大
      *
-     * @param workerIndex
+     * @param workerIndex workerIndex
      * @return boolean
      */
     public boolean isAssignWorker(int workerIndex) {
@@ -367,7 +366,7 @@ public class PT_Most {
     /**
      * 判断该任务是否还需要工人，并将该列元素全设为最大
      *
-     * @param taskIndex
+     * @param taskIndex taskIndex
      * @return boolean
      */
     public boolean isAssignTask(int taskIndex) {
@@ -384,7 +383,7 @@ public class PT_Most {
     /**
      * 计算此任务已经分配给多少工人了
      *
-     * @param taskIndex
+     * @param taskIndex taskIndex
      * @return int
      */
     public int countTaskIndex(int taskIndex) {

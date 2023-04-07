@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * @author wushengjie
- * @date 2022/11/21
  * 基于贪心的任务分配算法NearestFirst
  * GGA-I用来初始化种群
  * 距离矩阵中，row表示工人，col表示任务
@@ -99,7 +98,6 @@ public class NearestFirst {
 
     /**
      * 查询Map所有List中该任务出现的次数，即该任务分给多少工人了
-     * @param taskIndex
      * @return int
      */
     public int countTaskIndex(int taskIndex) {

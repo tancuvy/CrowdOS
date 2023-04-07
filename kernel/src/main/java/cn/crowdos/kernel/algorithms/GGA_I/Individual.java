@@ -11,7 +11,6 @@ import java.util.*;
  * 执行Serializable接口为了”序列化实现深拷贝”
  *
  * @author wushengjie
- * @date 2022/11/21
  */
 
 public class Individual implements Serializable {
@@ -39,12 +38,6 @@ public class Individual implements Serializable {
 
 
     /**
-     * @param workerNum
-     * @param taskNum
-     * @param distanceMatrix
-     * @param taskDistanceMatrix
-     * @param p
-     * @param q
      */
     public Individual(int workerNum,int taskNum,double[][] distanceMatrix,double[][] taskDistanceMatrix,int[] p,int q) {
 
@@ -67,12 +60,6 @@ public class Individual implements Serializable {
     }
 
     /**
-     * @param workerNum
-     * @param taskNum
-     * @param distanceMatrix
-     * @param taskDistanceMatrix
-     * @param p
-     * @param q
      * @param greedyType 0：最近邻贪心算法
      */
     public Individual(int workerNum,int taskNum,double[][] distanceMatrix,double[][] taskDistanceMatrix,
