@@ -1,5 +1,7 @@
 package cn.crowdos.kernel;
 
+import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentive;
+import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentiveImpl;
 import cn.crowdos.kernel.algorithms.*;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.DuplicateResourceNameException;
