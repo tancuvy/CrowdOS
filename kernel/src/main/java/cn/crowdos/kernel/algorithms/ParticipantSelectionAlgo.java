@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@FunctionalInterface
 public interface ParticipantSelectionAlgo {
     /**
      * Get all the workers that are eligible to be assigned to the given task.
