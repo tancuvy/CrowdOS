@@ -49,7 +49,7 @@
 
     <developers>
         <developer>
-            <name>loyx</name>
+            <name>Yixuan Luo</name>
             <email>isluoyixuan1@163.com</email>
             <timezone>8</timezone>
             <organization>NWPU CrowdOS Group</organization>
@@ -59,6 +59,66 @@
             </roles>
             <properties>
                 <picUrl>./images/loyx.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Ziyue Yu</name>
+            <email>1803861022@qq.com</email>
+            <timezone>8</timezone>
+            <organization>NWPU CrowdOS Group</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>./images/yuziyue.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Lele Zhao</name>
+            <email>lele_zhao1208@163.com</email>
+            <timezone>8</timezone>
+            <organization>NWPU CrowdOS Group</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>./images/zhaolele.png</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Haoyang Li</name>
+            <email>397838177@qq.com</email>
+            <timezone>8</timezone>
+            <organization>NWPU CrowdOS Group</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>./images/lihaoyang.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Liruizhao Hou</name>
+            <email>973217376@qq.com</email>
+            <timezone>8</timezone>
+            <organization>NWPU CrowdOS Group</organization>
+            <roles>
+                <role>Web Developer</role>
+            </roles>
+            <properties>
+                <picUrl>./images/houliruizhao.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Jiangyan Xu</name>
+            <email>xujiangyan2468@163.com</email>
+            <timezone>8</timezone>
+            <organization>NWPU CrowdOS Group</organization>
+            <roles>
+                <role>Web Developer</role>
+            </roles>
+            <properties>
+                <picUrl>./images/xujiangyan.jpg</picUrl>
             </properties>
         </developer>
     </developers>
