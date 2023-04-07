@@ -47,11 +47,16 @@ public class SimpleEncryptSpatioConstraint implements Constraint {
 
     @Override
     public Class<? extends Condition> getConditionClass() {
-        return null;
+        return Coordinate.class;
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleEncryptSpatioConstraint("+range[0]+","+range[1]+')';
     }
 
     @Override
     public String description() {
-        return null;
+        return toString();
     }
 }

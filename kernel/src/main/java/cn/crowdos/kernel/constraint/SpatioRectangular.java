@@ -5,16 +5,16 @@ import cn.crowdos.kernel.Decomposer;
 import java.util.Collections;
 import java.util.List;
 
-public class SimpleSpatioConstraint implements Constraint {
+public class SpatioRectangular implements Constraint {
 
     private final Coordinate[] range;
 
-    public SimpleSpatioConstraint(Coordinate topLeft, Coordinate bottomRight) throws InvalidConstraintException {
+    public SpatioRectangular(Coordinate topLeft, Coordinate bottomRight) throws InvalidConstraintException {
         if (topLeft.inLine(bottomRight)) throw new InvalidConstraintException();
         this.range = new Coordinate[]{topLeft, bottomRight};
     }
 
-    public SimpleSpatioConstraint(Coordinate bottomRight) throws InvalidConstraintException {
+    public SpatioRectangular(Coordinate bottomRight) throws InvalidConstraintException {
         Coordinate topLeft = new Coordinate();
         if (topLeft.inLine(bottomRight)) throw new InvalidConstraintException();
         this.range = new Coordinate[]{topLeft, bottomRight};
@@ -44,7 +44,7 @@ public class SimpleSpatioConstraint implements Constraint {
             @Override
             public List<Constraint> trivialDecompose() {
                 try {
-                    return Collections.singletonList(new SimpleSpatioConstraint(range[0], range[1]));
+                    return Collections.singletonList(new SpatioRectangular(range[0], range[1]));
                 } catch (InvalidConstraintException e) {
                     throw new RuntimeException(e);
                 }
@@ -60,6 +60,6 @@ public class SimpleSpatioConstraint implements Constraint {
 
     @Override
     public String toString() {
-        return "SpatioConstraint(" + range[0] + "," + range[1] + ')';
+        return "SpatioRectangular(" + range[0] + "," + range[1] + ')';
     }
 }
