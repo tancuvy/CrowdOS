@@ -29,6 +29,9 @@ public class GGA_IFactory extends AlgoFactoryAdapter {
         return new TaskAssignmentAlgo() {
             @Override
             public List<List<Participant>> getAssignmentScheme(ArrayList<Task> tasks) {
+                if(resourceCollection.getResourceHandler(ParticipantPool.class) == null){
+                    throw new NullPointerException("participantpool is null");
+                }
                 ParticipantPool participants = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
 
 
@@ -125,6 +128,9 @@ public class GGA_IFactory extends AlgoFactoryAdapter {
             @Override
             public List<Participant> getAssignmentScheme(Task task) {
                 // prepare args
+                if(resourceCollection.getResourceHandler(ParticipantPool.class) == null){
+                    throw new NullPointerException("participantpool is null");
+                }
                 ParticipantPool participants = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
 
                 int taskNum = 1;
@@ -157,7 +163,7 @@ public class GGA_IFactory extends AlgoFactoryAdapter {
                 gga_i.taskAssign();
 
                 // parser result
-                List<Participant> assignmentScheme = new LinkedList<>();
+                List<Participant> assignmentScheme = new ArrayList<>();
                 gga_i.getAssignMap().keySet().forEach(participantId -> assignmentScheme.add(participants.get(participantId)));
                 return assignmentScheme;
             }

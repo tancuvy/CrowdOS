@@ -28,7 +28,10 @@ public class PTMostFactory extends AlgoFactoryAdapter {
         return new TaskAssignmentAlgo() {
             @Override
             public List<List<Participant>> getAssignmentScheme(ArrayList<Task> tasks) {
-                ParticipantPool participants = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
+                if(resourceCollection.getResourceHandler(ParticipantPool.class) == null){
+                    throw new NullPointerException("participantpool is null");
+                }
+                    ParticipantPool participants = resourceCollection.getResourceHandler(ParticipantPool.class).getResourceView();
 
 
                 //所有任务的位置信息
@@ -156,7 +159,7 @@ public class PTMostFactory extends AlgoFactoryAdapter {
                 pt_most.taskAssign();
 
                 // parser result
-                List<Participant> assignmentScheme = new LinkedList<>();
+                List<Participant> assignmentScheme = new ArrayList<>();
                 pt_most.getAssignMap().keySet().forEach(participantId -> assignmentScheme.add(participants.get(participantId)));
                 return assignmentScheme;
             }

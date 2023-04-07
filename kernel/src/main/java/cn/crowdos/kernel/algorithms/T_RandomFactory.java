@@ -156,7 +156,7 @@ public class T_RandomFactory extends AlgoFactoryAdapter {
                 t_random.taskAssign();
 
                 // parser result
-                List<Participant> assignmentScheme = new LinkedList<>();
+                List<Participant> assignmentScheme = new ArrayList<>();
                 t_random.getAssignMap().keySet().forEach(participantId -> assignmentScheme.add(participants.get(participantId)));
                 return assignmentScheme;
             }

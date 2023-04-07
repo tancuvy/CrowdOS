@@ -1,6 +1,9 @@
 package cn.crowdos.kernel.algorithms.GGA_I;
 
+import cn.crowdos.kernel.system.resource.ParticipantPool;
+
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -97,7 +100,7 @@ public class Individual implements Serializable {
      */
     public void initGenesByRandom() {
 
-        Random random = new Random();
+        Random random = new SecureRandom();
         int taskIndex;
         int workerIndex;
 
@@ -188,13 +191,16 @@ public class Individual implements Serializable {
      */
     public void mutation() {
 
-        Random random = new Random();
+        Random random = new SecureRandom();
         int workerIndex1;
         int workerIndex2;
 
         //随机选择一个工人1，任务列表非空
         while(true){
             workerIndex1 = random.nextInt(workerNum);
+            if (assignMap == null){
+                    throw new NullPointerException("workerindex is null");
+            }
             if (assignMap.get(workerIndex1).size() > 0){
                 break;
             }
@@ -228,7 +234,7 @@ public class Individual implements Serializable {
      *变异操作2：随机选择一个工人，打乱其任务列表
      */
     public void mutation2() {
-        Random random = new Random();
+        Random random = new SecureRandom();
         int workerIndex;
         while(true){
             workerIndex = random.nextInt(workerNum);

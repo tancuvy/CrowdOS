@@ -1,7 +1,9 @@
 package cn.crowdos.kernel.algorithms.GGA_I;
 
 import java.io.*;
+import java.security.SecureRandom;
 import java.util.*;
+
 
 
 /**
@@ -67,7 +69,7 @@ public class GGA_I_Main {
         //种群
         List<Individual> population = new ArrayList<>();
         //随机数工具
-        Random random = new Random();
+        Random random = new SecureRandom();
         //开始计算时间
         long startTime = System.currentTimeMillis();
         //存储最优个体
@@ -293,7 +295,7 @@ public class GGA_I_Main {
      */
     public void repairIndividual(Individual individual) {
 
-        Random random = new Random();
+        Random random = new SecureRandom();
 
         for (int i = 0; i < workerNum; i++) {
             List<Integer> taskList = individual.getAssignMap().get(i);
@@ -370,9 +372,13 @@ public class GGA_I_Main {
             e.printStackTrace();
         } finally {
             try {
+                assert bos != null;
                 bos.close();
+                assert oos != null;
                 oos.close();
+                assert bis != null;
                 bis.close();
+                assert ois != null;
                 ois.close();
             } catch (IOException e) {
                 e.printStackTrace();

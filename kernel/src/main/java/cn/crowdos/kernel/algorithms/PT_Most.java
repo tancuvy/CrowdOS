@@ -197,22 +197,6 @@ public class PT_Most {
     }
 
     //todo 判断传入的参数是否合法，比如任务需要的工人数量p[i]与每个工人最多能接受的任务数量q不匹配
-    private boolean isParamValid() {
-
-        int sum = 0;
-
-        //遍历p数组
-        for (int i = 0; i < p.length; i++) {
-            sum += p[i];
-        }
-
-        //所有参与者最多可接受多少任务是否等于或大于总任务数
-        if (q * workerNum < sum) {
-            return false;
-        }
-
-        return true;
-    }
 
     /**
      * 选出分配任务最多的工人，只保留他和他分配的任务
@@ -273,23 +257,6 @@ public class PT_Most {
 
     }
 
-    /**
-     * 找到离任务最近的工人
-     *
-     * @param taskIndex
-     * @return int
-     */
-    private int findMinWorkerToTask(int taskIndex) {
-        double min = INF;
-        int minIndex = -1;
-        for (int i = 0; i < workerNum; i++) {
-            if (distanceMatrix[i][taskIndex] < min) {
-                min = distanceMatrix[i][taskIndex];
-                minIndex = i;
-            }
-        }
-        return minIndex;
-    }
 
     /**
      * 找到离工人最近的任务

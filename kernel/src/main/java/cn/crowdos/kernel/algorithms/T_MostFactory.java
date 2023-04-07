@@ -156,7 +156,7 @@ public class T_MostFactory extends AlgoFactoryAdapter {
                 t_most.taskAssign();
 
                 // parser result
-                List<Participant> assignmentScheme = new LinkedList<>();
+                List<Participant> assignmentScheme = new ArrayList<>();
                 t_most.getAssignMap().keySet().forEach(participantId -> assignmentScheme.add(participants.get(participantId)));
                 return assignmentScheme;
             }
