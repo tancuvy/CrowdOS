@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SimpleSpatioConstraintTest {
+class SpatioRectangularTest {
 
-    SimpleSpatioConstraint constraint;
+    SpatioRectangular constraint;
     {
         Coordinate leftTop = new Coordinate(0, 0);
         Coordinate rightBottom = new Coordinate(10, 10);
         try {
-            constraint = new SimpleSpatioConstraint(leftTop, rightBottom);
+            constraint = new SpatioRectangular(leftTop, rightBottom);
         } catch (InvalidConstraintException e) {
             throw new RuntimeException(e);
         }
@@ -23,7 +23,7 @@ class SimpleSpatioConstraintTest {
     void newException(){
         assertThrows(
                 InvalidConstraintException.class,
-                () -> new SimpleSpatioConstraint(new Coordinate(0, 0), new Coordinate(0, 100))
+                () -> new SpatioRectangular(new Coordinate(0, 0), new Coordinate(0, 100))
         );
     }
 

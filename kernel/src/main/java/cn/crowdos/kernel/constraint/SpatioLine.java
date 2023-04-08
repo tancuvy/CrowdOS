@@ -107,8 +107,12 @@ public class SpatioLine implements Constraint{
 
     private Coordinate ComputePoint(double distance){
         if(endPoint.latitude==startPoint.latitude){
-            if(endPoint.latitude>startPoint.latitude) return new Coordinate(startPoint.longitude+distance,startPoint.latitude);
+            if(endPoint.longitude>startPoint.longitude) return new Coordinate(startPoint.longitude+distance,startPoint.latitude);
             else return new Coordinate(startPoint.longitude-distance,startPoint.latitude);
+        }
+        else if(endPoint.longitude == startPoint.longitude){
+            if(endPoint.latitude>startPoint.latitude) return new Coordinate(startPoint.longitude,startPoint.latitude+distance);
+            else return new Coordinate(startPoint.longitude, startPoint.latitude-distance);
         }
         else{
             double k = (endPoint.latitude-startPoint.latitude)/(endPoint.longitude-startPoint.longitude);
@@ -117,13 +121,4 @@ public class SpatioLine implements Constraint{
             return new Coordinate(newLongitude,newLatitude);
          }
     }
-
-    /*
-    public static void main(String []args) throws InvalidConstraintException {
-        SpatioLine spatioLine = new SpatioLine(new Coordinate(1,3),new Coordinate(3,1),1);
-        System.out.println(spatioLine.satisfy(new Coordinate(3,1.2)));
-        System.out.println(spatioLine.satisfy(new Coordinate(3,0)));
-        System.out.println(spatioLine.description());
-    }
-    */
 }

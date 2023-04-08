@@ -46,13 +46,13 @@ public class DateInterval implements Constraint{
             public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
                 if (scale<0) throw new DecomposeException("invalid decompose scale");
                 if (scale==1) return trivialDecompose();
-                Duration duration = Duration.between(startDate,endDate);
-                long totalDays = duration.toDays();
-                long daysPerInterval = totalDays/scale;
+                Duration duration = Duration.between(startDate.atStartOfDay(),endDate.atStartOfDay());
+                long totalHours = duration.toDays()*24;
+                long hoursPerInterval = totalHours/scale;
                 List<Constraint> subConstraints = new ArrayList<>(scale);
                 for(int i=0;i<scale;i++){
-                    LocalDate intervalStartDate = startDate.plusDays(i*daysPerInterval);
-                    LocalDate intervalEndDate = intervalStartDate.plusDays(daysPerInterval);
+                    LocalDate intervalStartDate = startDate.plusDays((i*hoursPerInterval)/24);
+                    LocalDate intervalEndDate = intervalStartDate.plusDays(hoursPerInterval/24);
                     try{
                         subConstraints.add(new DateInterval(intervalStartDate,intervalEndDate));
                     }catch(InvalidConstraintException e){
