@@ -15,7 +15,7 @@ public class DependenceConstraint implements Constraint {
 
     @Override
     public Decomposer<Constraint> decomposer() {
-        List<Class<?>> argsClass = Collections.singletonList(previousTasks.getClass());
+        List<Class<?>> argsClass = Collections.singletonList(List.class);
         List<Object> args = Collections.singletonList(previousTasks);
         return new IndecomposableDecomposerGenerator(argsClass, args, DependenceConstraint.class);
     }
