@@ -27,7 +27,7 @@ public class Scheduler implements Resource<Scheduler> {
     // The constructor of the Scheduler class. It is used to initialize the scheduler.
     public Scheduler(SystemResourceCollection collection){
         this.resourceCollection = collection;
-        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoContainer.class,"Default");
+        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoContainer.class,"DefaultAlgo");
         this.algoFactory = resourceHandler.getResource();
 
         participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
