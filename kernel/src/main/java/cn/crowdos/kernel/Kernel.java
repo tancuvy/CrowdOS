@@ -85,24 +85,48 @@ public class Kernel implements CrowdKernel {
         try {
             systemResourceCollection.register(new TaskPool());
             systemResourceCollection.register(new ParticipantPool());
-            systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)));
+            systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)),"DefaultAlgo");
             systemResourceCollection.register(new Scheduler(systemResourceCollection));
             systemResourceCollection.register(new MissionHistory());
-            systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new GGA_IFactory(systemResourceCollection)));
             systemResourceCollection.register(new TrustBasedIncentiveImpl());
+            systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)),"PTMost");
+            systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)),"T_Most");
+            systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)),"T_Random");
+            systemResourceCollection.register(new AlgoContainer(new GGA_IFactory(systemResourceCollection)),"GGA_I");
         } catch (DuplicateResourceNameException e) {
             throw new RuntimeException(e);
         }
         initialed = true;
     }
 
+    
+    //The system provides PTMost, T_Most, T_Random and GGA_I algorithms by default. If necessary, you can choose them by yourself
+    @Override
+    public void algoSelect(String name){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        switch (name) {
+            case "PTMost":
+                resource.setAlgoFactory("PTMost");
+                break;
+            case "T_Most":
+                resource.setAlgoFactory("T_Most");
+                break;
+            case "T_Random":
+                resource.setAlgoFactory("T_Random");
+                break;
+            case "GGA_I":
+                resource.setAlgoFactory("GGA_I");
+                break;
+            default:
+                throw new IllegalArgumentException("The system does not have the method.Please choose method from 'PTMost','T_Most','T_Random','GGA_I'");
+        }
+    }
+
     @Override
     public void initial(){
         initial((Object) null);
     }
+
     @Override
     public SystemResourceCollection getSystemResourceCollection() {
         return systemResourceCollection;
@@ -119,6 +143,7 @@ public class Kernel implements CrowdKernel {
         resource.add(participant);
         return true;
     }
+
     @Override
     public List<Task> getTasks(){
         TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
@@ -149,6 +174,7 @@ public class Kernel implements CrowdKernel {
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         return resource.taskAssignment(tasks);
     }
+
     @Override
     public List<Participant> getTaskRecommendationScheme(Task task){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();

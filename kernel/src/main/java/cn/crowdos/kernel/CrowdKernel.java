@@ -29,6 +29,10 @@ public interface CrowdKernel {
      */
     void initial(Object...args);
 
+
+    //The system provides PTMost, T_Most, T_Random and GGA_I algorithms by default. If necessary, you can choose them by yourself
+    void algoSelect(String name);
+
     /**
      * It initializes the program.
      */
