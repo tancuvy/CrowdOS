@@ -100,25 +100,25 @@ public class Kernel implements CrowdKernel {
     }
 
     
-    //系统默认提供PTMost、T_Most、T_Random、GGA_I四种算法，如有需要可自行选择
+    //The system provides PTMost, T_Most, T_Random and GGA_I algorithms by default. If necessary, you can choose them by yourself
     @Override
-    public void AlgoSelect(String name){
+    public void algoSelect(String name){
         Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         switch (name) {
             case "PTMost":
-                resource.SetAlgoFactory("PTMost");
+                resource.setAlgoFactory("PTMost");
                 break;
             case "T_Most":
-                resource.SetAlgoFactory("T_Most");
+                resource.setAlgoFactory("T_Most");
                 break;
             case "T_Random":
-                resource.SetAlgoFactory("T_Random");
+                resource.setAlgoFactory("T_Random");
                 break;
             case "GGA_I":
-                resource.SetAlgoFactory("GGA_I");
+                resource.setAlgoFactory("GGA_I");
                 break;
             default:
-                throw new IllegalArgumentException("Wrong Methods");
+                throw new IllegalArgumentException("The system does not have the method.Please choose method from 'PTMost','T_Most','T_Random','GGA_I'");
         }
     }
 

@@ -34,7 +34,7 @@ public class Scheduler implements Resource<Scheduler> {
         taskRecommendationAlgo = algoFactory.getTaskRecommendationAlgo();
         taskAssignmentAlgo = algoFactory.getTaskAssignmentAlgo();
     }
-    public void SetAlgoFactory(String name){
+    public void setAlgoFactory(String name){
         SystemResourceHandler<AlgoFactory> resourceHandler = resourceCollection.getResourceHandler(AlgoContainer.class,name);
         algoFactory = resourceHandler.getResource();
         participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
