@@ -29,6 +29,10 @@ public interface CrowdKernel {
      */
     void initial(Object...args);
 
+
+    //系统也默认提供PTMost、T_Most、T_Random、GGA_I四种算法，如有需要可自行选择
+    void AlgoSelect(String name);
+
     /**
      * It initializes the program.
      */

@@ -85,24 +85,48 @@ public class Kernel implements CrowdKernel {
         try {
             systemResourceCollection.register(new TaskPool());
             systemResourceCollection.register(new ParticipantPool());
-            systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)));
+            systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)),"DefaultAlgo");
             systemResourceCollection.register(new Scheduler(systemResourceCollection));
             systemResourceCollection.register(new MissionHistory());
-            systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)));
-            systemResourceCollection.register(new AlgoContainer(new GGA_IFactory(systemResourceCollection)));
             systemResourceCollection.register(new TrustBasedIncentiveImpl());
+            systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)),"PTMost");
+            systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)),"T_Most");
+            systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)),"T_Random");
+            systemResourceCollection.register(new AlgoContainer(new GGA_IFactory(systemResourceCollection)),"GGA_I");
         } catch (DuplicateResourceNameException e) {
             throw new RuntimeException(e);
         }
         initialed = true;
     }
 
+    //提供默认算法实现DefaultAlgo
+    Scheduler Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class,"DefaultAlgo").getResource();
+    
+    //系统也默认提供PTMost、T_Most、T_Random、GGA_I四种算法，如有需要可自行选择
+    @Override
+    public void AlgoSelect(String name){
+        switch (name) {
+            case "PTMost":
+                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "PTMost").getResource();
+                break;
+            case "T_Most":
+                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "T_Most").getResource();
+                break;
+            case "T_Random":
+                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "T_Random").getResource();
+                break;
+            case "GGA_I":
+                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "GGA_I").getResource();
+                break;
+            default:break;
+        }
+    }
+
     @Override
     public void initial(){
         initial((Object) null);
     }
+
     @Override
     public SystemResourceCollection getSystemResourceCollection() {
         return systemResourceCollection;
@@ -119,6 +143,7 @@ public class Kernel implements CrowdKernel {
         resource.add(participant);
         return true;
     }
+
     @Override
     public List<Task> getTasks(){
         TaskPool resource = systemResourceCollection.getResourceHandler(TaskPool.class).getResource();
@@ -126,8 +151,8 @@ public class Kernel implements CrowdKernel {
     }
     @Override
     public List<Participant> getTaskAssignmentScheme(Task task){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.taskAssignment(task);
+
+        return Algoresource.taskAssignment(task);
     }
     @Override
     public Map<Participant, Double> getTaskIncentiveAssignmentScheme(Task task , Double rewards){
@@ -146,28 +171,29 @@ public class Kernel implements CrowdKernel {
 
     @Override
     public List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.taskAssignment(tasks);
+
+        return Algoresource.taskAssignment(tasks);
     }
+
     @Override
     public List<Participant> getTaskRecommendationScheme(Task task){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.taskRecommendation(task);
+
+        return Algoresource.taskRecommendation(task);
     }
     @Override
     public List<List<Participant>> getTaskRecommendationScheme(ArrayList<Task> tasks){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.taskRecommendation(tasks);
+
+        return Algoresource.taskRecommendation(tasks);
     }
     @Override
     public List<Participant> getTaskParticipantSelectionResult(Task task){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.participantSelection(task);
+
+        return Algoresource.participantSelection(task);
     }
     @Override
     public List<List<Participant>> getTaskParticipantSelectionResult(ArrayList<Task> tasks){
-        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
-        return resource.participantSelection(tasks);
+
+        return Algoresource.participantSelection(tasks);
     }
     @Override
     public List<Participant> getParticipants(){

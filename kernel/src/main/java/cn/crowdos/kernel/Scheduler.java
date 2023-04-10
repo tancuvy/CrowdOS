@@ -1,9 +1,6 @@
 package cn.crowdos.kernel;
 
-import cn.crowdos.kernel.algorithms.AlgoFactory;
-import cn.crowdos.kernel.algorithms.ParticipantSelectionAlgo;
-import cn.crowdos.kernel.algorithms.TaskAssignmentAlgo;
-import cn.crowdos.kernel.algorithms.TaskRecommendationAlgo;
+import cn.crowdos.kernel.algorithms.*;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
 import cn.crowdos.kernel.system.SystemResourceCollection;
