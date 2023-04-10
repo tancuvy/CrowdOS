@@ -14,26 +14,34 @@ import java.util.List;
 
 public class Scheduler implements Resource<Scheduler> {
     // A private variable that is used to store the participant selection algorithm.
-    private final ParticipantSelectionAlgo participantSelectionAlgo;
+    private ParticipantSelectionAlgo participantSelectionAlgo;
     // A private variable that is used to store the task recommendation algorithm.
-    private final TaskRecommendationAlgo taskRecommendationAlgo;
+    private TaskRecommendationAlgo taskRecommendationAlgo;
     // A private variable that is used to store the task assignment algorithm.
-    private final TaskAssignmentAlgo taskAssignmentAlgo;
+    private TaskAssignmentAlgo taskAssignmentAlgo;
     // A private variable that is used to store the algorithm factory.
-    private final AlgoFactory algoFactory;
+    private AlgoFactory algoFactory;
     // Used to store the resource collection.
     private final SystemResourceCollection resourceCollection;
 
     // The constructor of the Scheduler class. It is used to initialize the scheduler.
     public Scheduler(SystemResourceCollection collection){
         this.resourceCollection = collection;
-        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoContainer.class);
+        SystemResourceHandler<AlgoFactory> resourceHandler = collection.getResourceHandler(AlgoContainer.class,"Default");
         this.algoFactory = resourceHandler.getResource();
 
         participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
         taskRecommendationAlgo = algoFactory.getTaskRecommendationAlgo();
         taskAssignmentAlgo = algoFactory.getTaskAssignmentAlgo();
     }
+    public void SetAlgoFactory(String name){
+        SystemResourceHandler<AlgoFactory> resourceHandler = resourceCollection.getResourceHandler(AlgoContainer.class,name);
+        algoFactory = resourceHandler.getResource();
+        participantSelectionAlgo = algoFactory.getParticipantSelectionAlgo();
+        taskRecommendationAlgo = algoFactory.getTaskRecommendationAlgo();
+        taskAssignmentAlgo = algoFactory.getTaskAssignmentAlgo();
+    }
+
 
     /**
      *  For each task in the task pool, recommend a list of participants to complete the task

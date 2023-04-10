@@ -99,26 +99,26 @@ public class Kernel implements CrowdKernel {
         initialed = true;
     }
 
-    //提供默认算法实现DefaultAlgo
-    Scheduler Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class,"DefaultAlgo").getResource();
     
-    //系统也默认提供PTMost、T_Most、T_Random、GGA_I四种算法，如有需要可自行选择
+    //系统默认提供PTMost、T_Most、T_Random、GGA_I四种算法，如有需要可自行选择
     @Override
     public void AlgoSelect(String name){
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
         switch (name) {
             case "PTMost":
-                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "PTMost").getResource();
+                resource.SetAlgoFactory("PTMost");
                 break;
             case "T_Most":
-                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "T_Most").getResource();
+                resource.SetAlgoFactory("T_Most");
                 break;
             case "T_Random":
-                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "T_Random").getResource();
+                resource.SetAlgoFactory("T_Random");
                 break;
             case "GGA_I":
-                Algoresource = systemResourceCollection.getResourceHandler(Scheduler.class, "GGA_I").getResource();
+                resource.SetAlgoFactory("GGA_I");
                 break;
-            default:break;
+            default:
+                throw new IllegalArgumentException("Wrong Methods");
         }
     }
 
@@ -151,8 +151,8 @@ public class Kernel implements CrowdKernel {
     }
     @Override
     public List<Participant> getTaskAssignmentScheme(Task task){
-
-        return Algoresource.taskAssignment(task);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskAssignment(task);
     }
     @Override
     public Map<Participant, Double> getTaskIncentiveAssignmentScheme(Task task , Double rewards){
@@ -171,29 +171,29 @@ public class Kernel implements CrowdKernel {
 
     @Override
     public List<List<Participant>> getTaskAssignmentScheme(ArrayList<Task> tasks){
-
-        return Algoresource.taskAssignment(tasks);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskAssignment(tasks);
     }
 
     @Override
     public List<Participant> getTaskRecommendationScheme(Task task){
-
-        return Algoresource.taskRecommendation(task);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskRecommendation(task);
     }
     @Override
     public List<List<Participant>> getTaskRecommendationScheme(ArrayList<Task> tasks){
-
-        return Algoresource.taskRecommendation(tasks);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.taskRecommendation(tasks);
     }
     @Override
     public List<Participant> getTaskParticipantSelectionResult(Task task){
-
-        return Algoresource.participantSelection(task);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.participantSelection(task);
     }
     @Override
     public List<List<Participant>> getTaskParticipantSelectionResult(ArrayList<Task> tasks){
-
-        return Algoresource.participantSelection(tasks);
+        Scheduler resource = systemResourceCollection.getResourceHandler(Scheduler.class).getResource();
+        return resource.participantSelection(tasks);
     }
     @Override
     public List<Participant> getParticipants(){
