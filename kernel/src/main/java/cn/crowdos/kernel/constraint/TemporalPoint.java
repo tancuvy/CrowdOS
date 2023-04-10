@@ -21,7 +21,7 @@ public class TemporalPoint implements Constraint{
     public TemporalPoint(String timePoint, long shift) {
         LocalTime point = LocalTime.parse(timePoint);
         this.shift = shift;
-        this.startTime = point.plusMinutes(shift);
+        this.startTime = point.minusMinutes(shift);
         this.endTime = point.plusMinutes(shift);
     }
     private TemporalPoint(LocalTime startTime, LocalTime endTime, long shift) throws InvalidConstraintException {
