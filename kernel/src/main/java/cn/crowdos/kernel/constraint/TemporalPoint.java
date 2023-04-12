@@ -13,17 +13,41 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * TemporalPoint Constraint
+ *
+ * @author loyx
+ * @since 1.0.1
+ */
 public class TemporalPoint implements Constraint{
     private final long shift;
     private final LocalTime startTime;
     private final LocalTime endTime;
 
+    /**
+     * The TemporalPoint function takes a time point and a shift value as input,
+     * and returns the startTime and endTime of the temporal window.
+     *
+     * @param timePoint Set the start time and end time of the temporal point object
+     * @param shift Determine the start and end times of a temporal point
+     */
     public TemporalPoint(String timePoint, long shift) {
         LocalTime point = LocalTime.parse(timePoint);
         this.shift = shift;
         this.startTime = point.minusMinutes(shift);
         this.endTime = point.plusMinutes(shift);
     }
+    /**
+     * The TemporalPoint function is a constructor for the TemporalPoint class.
+     * It takes in two LocalTime objects, startTime and endTime, as well as a long shift.
+     * The function then sets the instance variables of this object to be equal to these values.
+     * If startTime is after endTime, an InvalidConstraintException will be thrown with an error message explaining
+     * that this cannot happen.
+     *
+     * @param startTime startTime Set the start time of this temporal point
+     * @param endTime endTime Set the end time of the temporal point
+     * @param shift Shift the start and end times by a certain amount of time
+     */
     private TemporalPoint(LocalTime startTime, LocalTime endTime, long shift) throws InvalidConstraintException {
         this.shift = shift;
         this.startTime = startTime;
@@ -33,6 +57,15 @@ public class TemporalPoint implements Constraint{
         }
     }
 
+    /**
+     * The decomposer function is used to split a constraint into smaller constraints.
+     * This is useful for two reasons:
+     * 1) It allows the solver to solve problems that are too large for it to handle in one go.
+     * 2) It allows the solver to use heuristics that require sub-constraints of a certain type, e.g., TemporalPoint constraints.
+     *
+     * @return A Decomposer
+     *
+     */
     @Override
     public Decomposer<Constraint> decomposer() {
         return new Decomposer<Constraint>() {
@@ -68,6 +101,16 @@ public class TemporalPoint implements Constraint{
         };
     }
 
+    /**
+     * The satisfy function checks if the given condition is a Date object, and if so,
+     * it converts that date to a LocalTime object. It then checks whether the time
+     * of day represented by that LocalTime is between startTime and endTime (inclusive).
+
+     *
+     * @param condition Check if the condition is satisfied
+     *
+     * @return True if the condition is an instance of date and the local time of that date is equal to starttime or between starttime and endtime
+     */
     @Override
     public boolean satisfy(Condition condition) {
         if (!(condition instanceof Date)) return false;
@@ -76,16 +119,34 @@ public class TemporalPoint implements Constraint{
         return localTime.equals(startTime) || (localTime.isAfter(startTime) && localTime.isBefore(endTime));
     }
 
+    /**
+     * get the condition class Object
+     *
+     * @return The class of the condition that is used to evaluate the rule
+     *
+     */
     @Override
     public Class<? extends Condition> getConditionClass() {
         return DateCondition.class;
     }
 
+    /**
+     * The description function returns a string that describes the object.
+     *
+     * @return A string representation of the object
+     *
+     */
     @Override
     public String description() {
         return toString();
     }
 
+    /**
+     * The toString function is used to print out the contents of a TemporalPoint object.
+     *
+     * @return A string object that contains the values of the shift, starttime and endtime variables
+     *
+     */
     @Override
     public String toString() {
         return "TemporalPoint{" +
