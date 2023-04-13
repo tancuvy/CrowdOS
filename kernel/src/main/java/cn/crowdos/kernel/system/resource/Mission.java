@@ -5,6 +5,15 @@ import cn.crowdos.kernel.resource.Task;
 
 import java.util.*;
 
+/**
+ * Mission maintains the execution of tasks in the system, reporting over task assignment
+ * results, task submission order, etc. Whenever a task is assigned, the system changes to
+ * generate a Mission object. All the Missions are recorded in the {@link  MissionHistory}.
+ *
+ * @author loyx
+ * @since 1.0.1
+ * @see MissionHistory
+ */
 public class Mission {
     private final Task task;
     private final List<Participant> participants;
@@ -17,6 +26,15 @@ public class Mission {
     }
     MissionStatus missionStatus;
 
+    /**
+     * The Mission function is a constructor for the Mission class.
+     * It takes in two parameters: task and participants, which are both objects of other classes.
+     * The function initializes the fields of this class with these parameters, as well as creating
+     * new instances of PriorityQueue and ArrayList to be used by this object.
+     *
+     * @param task Set the task of this mission
+     * @param participants Create a new list&lt;participant&gt; submitparticipants
+     */
     public Mission(Task task, List<Participant> participants) {
         this.task = task;
         this.participants = participants;
@@ -25,20 +43,44 @@ public class Mission {
         this.missionStatus = MissionStatus.UNFINISHED;
     }
 
+    /**
+     * The getFirstSubmitParticipant function returns the participant who submitted first.
+     *
+     * @return The participant with the lowest time
+     *
+     */
     public Participant getFirstSubmitParticipant(){
         Object[] peek = priorityQueue.peek();
         if (peek == null) return null;
         return (Participant) peek[0];
     }
 
+    /**
+     * The getParticipants function returns a list of participants.
+     *
+     * @return A list of participants
+     */
     public List<Participant> getParticipants() {
         return participants;
     }
 
+    /**
+     * The updateSubmit function updates the participant's submission time to the current time.
+     *
+     * @param participant Determine which participant is being updated
+     *
+     */
     public void updateSubmit(Participant participant) throws MissionUpdateException {
         updateSubmit(participant, new Date());
     }
 
+    /**
+     * The updateSubmit function is used to update the submit time of a participant.
+     *
+     * @param participant Identify the participant that is updating their status
+     * @param submitTime Determine the order in which participants submit their work
+     *
+     */
     public void updateSubmit(Participant participant, Date submitTime) throws MissionUpdateException {
         if (!participants.contains(participant) || submitParticipants.contains(participant)){
             throw new MissionUpdateException();
@@ -51,10 +93,25 @@ public class Mission {
         }
     }
 
+    /**
+     * The belongTo function checks if the task of a given TaskItem is equal to the
+     * task of this TaskItem. If they are, it returns true. Otherwise, it returns false.
+     *
+     * @param task Compare the task object to the current task object
+     *
+     * @return A boolean value
+     */
     public boolean belongTo(Task task){
         return this.task.equals(task);
     }
 
+    /**
+     * The involved function checks if a participant is involved in the conversation.
+     *
+     * @param participant Check if the participant is already in the participants list
+     *
+     * @return True if the participant is in the list of participants
+     */
     public boolean involved(Participant participant){
         return this.participants.contains(participant);
     }
