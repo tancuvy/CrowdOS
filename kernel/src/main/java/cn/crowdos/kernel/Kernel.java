@@ -99,7 +99,7 @@ public class Kernel implements CrowdKernel {
         initialed = true;
     }
 
-    
+
     //The system provides PTMost, T_Most, T_Random and GGA_I algorithms by default. If necessary, you can choose them by yourself
     @Override
     public void algoSelect(String name){

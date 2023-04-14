@@ -1,21 +1,18 @@
 package cn.crowdos.kernel.TrustBasedIncentive;
 
-import cn.crowdos.kernel.Scheduler;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
 import cn.crowdos.kernel.system.SystemResourceHandler;
-import cn.crowdos.kernel.system.resource.MissionHistory;
-import cn.crowdos.kernel.system.resource.Resource;
 
 import java.util.*;
 
-public class TrustBasedIncentiveImpl implements TrustBasedIncentive{
+public class CredibilityBasedIncentiveImpl implements CredibilityBasedIncentive {
 
     private final Map<Participant, Integer> trustValues; // 工作者和信誉度的映射
     private final List<Participant> trustedParticipants; // 受信任参与者集合
     private final Map<Participant, Double> rewardValues; // 工作者和报酬的映射
 
-    public TrustBasedIncentiveImpl() {
+    public CredibilityBasedIncentiveImpl() {
         rewardValues = new HashMap<>();
         trustValues = new HashMap<>();
         trustedParticipants = new ArrayList<>();
@@ -63,7 +60,11 @@ public class TrustBasedIncentiveImpl implements TrustBasedIncentive{
 
     @Override
     public void removeTrustedParticipant(Participant participant) {
-        trustedParticipants.remove(participant);
+        for (Map.Entry<Participant, Integer> entry : trustValues.entrySet()) {
+            if (entry.getValue() < 0) {
+                trustedParticipants.remove(participant);
+            }
+        }
     }
 
     @Override
@@ -77,7 +78,7 @@ public class TrustBasedIncentiveImpl implements TrustBasedIncentive{
     }
 
     @Override
-    public SystemResourceHandler<TrustBasedIncentive> getHandler() {
+    public SystemResourceHandler<CredibilityBasedIncentive> getHandler() {
         return null;
     }
 }
