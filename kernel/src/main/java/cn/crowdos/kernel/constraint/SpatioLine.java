@@ -7,10 +7,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+/**
+ *
+ * The SpatioLine class represents a line in a 2D coordinate system with a given width.
+ * It implements the Constraint interface and provides methods for decomposition and satisfaction testing.
+ */
 public class SpatioLine implements Constraint{
     private final Coordinate startPoint;
     private final Coordinate endPoint;
     private final double width;
+
+    /**
+     * Constructs a new SpatioLine with the specified start and end points and width.
+     *
+     * @param startPoint the start point of the SpatioLine
+     * @param endPoint the end point of the SpatioLine
+     * @param width the width of the SpatioLine
+     * @throws InvalidConstraintException if the width is less than or equal to zero
+     */
 
     public SpatioLine(Coordinate startPoint, Coordinate endPoint, double width) throws InvalidConstraintException{
         this.startPoint = startPoint;
@@ -20,10 +35,18 @@ public class SpatioLine implements Constraint{
             throw new InvalidConstraintException(String.format("width %s is invalid",this.width));
         }
     }
-
+    /**
+     * Returns a Decomposer object that can be used to decompose this constraint into sub-constraints.
+     * This method returns a new anonymous Decomposer object that implements the trivialDecompose() and scaleDecompose() methods.
+     * @return A Decomposer object that can be used to decompose this constraint.
+     */
     @Override
     public Decomposer<Constraint> decomposer() {
         return new Decomposer<Constraint>() {
+            /**
+             * Returns a list containing a single SpatioLine object representing the original constraint.
+             * @return A list containing a single SpatioLine object representing the original constraint.
+             */
             @Override
             public List<Constraint> trivialDecompose() {
                 try{
@@ -32,6 +55,14 @@ public class SpatioLine implements Constraint{
                     throw new RuntimeException(e);
                 }
             }
+            /**
+             * Scales the original constraint by the given scale factor and returns a list of sub-constraints.
+             * The sub-constraints are SpatioLine objects that represent equally spaced intervals along the original line segment.
+             * The total number of sub-constraints is equal to the scale factor.
+             * @param scale The scale factor used to decompose the constraint.
+             * @return A list of sub-constraints.
+             * @throws DecomposeException If the scale factor is less than zero.
+             */
 
             @Override
             public List<Constraint> scaleDecompose(int scale) throws DecomposeException {
@@ -55,6 +86,14 @@ public class SpatioLine implements Constraint{
         };
     }
 
+
+    /**
+     *
+     * Checks if a given Coordinate satisfies the condition of being within a certain distance of the spatioline.
+     * @param condition the Coordinate to check
+     * @return true if the Coordinate is within the distance, false otherwise
+     */
+
     @Override
     public boolean satisfy(Condition condition) {
         if(!(condition instanceof Coordinate)) return false;
@@ -62,11 +101,22 @@ public class SpatioLine implements Constraint{
         return ComputePointToLineDistance(startPoint,endPoint,coordinate)<=width/2;
     }
 
+    /**
+     *
+     * Gets the class of the condition that this SpatioLine object accepts.
+     * @return the class of the accepted condition
+     */
+
     @Override
     public Class<? extends Condition> getConditionClass() {
         return Coordinate.class;
     }
 
+    /**
+     *
+     * Returns a String representation of this SpatioLine object.
+     * @return a String representation of the object
+     */
     @Override
     public String toString(){
         return "SpatioLine{" +
@@ -76,11 +126,25 @@ public class SpatioLine implements Constraint{
                 "}";
     }
 
+    /**
+     *
+     * Returns a description of this SpatioLine object.
+     * @return a description of the object
+     */
+
     @Override
     public String description() {
         return toString();
     }
 
+    /**
+     *
+     * Computes the distance between a point and the line segment defined by the starting point and ending point.
+     * @param start the starting point of the line segment
+     * @param end the ending point of the line segment
+     * @param point the point to compute the distance to
+     * @return the distance between the point and the line segment
+     */
     private double ComputePointToLineDistance(Coordinate start,Coordinate end,Coordinate point){
         double x = point.longitude, y = point.latitude;
         double x1 = start.longitude, y1 = start.latitude;
@@ -99,11 +163,29 @@ public class SpatioLine implements Constraint{
         return Math.sqrt((x - px) * (x - px) + (y - py) * (y - py));
     }
 
+    /**
+     *
+     * This method computes the Euclidean distance between two points on a 2D plane, given their coordinates.
+     * The distance is computed as the square root of the sum of the squares of the differences between the longitudes and latitudes.
+     * @param point1 The first point's coordinates, given as a Coordinate object.
+     * @param point2 The second point's coordinates, given as a Coordinate object.
+     * @return The Euclidean distance between the two points, as a double.
+     */
+
     private double ComputePointToPointDistance(Coordinate point1,Coordinate point2){
         double longitudeDifference = point1.longitude - point2.longitude;
         double latitudeDifference = point1.latitude - point2.latitude;
         return Math.sqrt(longitudeDifference*longitudeDifference+latitudeDifference*latitudeDifference);
     }
+
+    /**
+     *
+     * This method computes the coordinates of a point at a certain distance along a straight line between two other points.
+     * The line is defined by the start point and end point, given as Coordinate objects.
+     * The distance is given as a double, and represents the distance from the start point to the computed point.
+     * @param distance The distance from the start point to the computed point, given as a double.
+     * @return The coordinates of the computed point, given as a Coordinate object.
+     */
 
     private Coordinate ComputePoint(double distance){
         if(endPoint.latitude==startPoint.latitude){

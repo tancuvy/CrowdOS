@@ -9,8 +9,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * A SpatioPolygon class represents a polygon in a two-dimensional space. It implements the Constraint interface.
+ */
+
 public class SpatioPolygon implements Constraint{
     private final List<Coordinate> polygon;
+
+    /**
+     * Constructs a SpatioPolygon with the given list of coordinates.
+     *
+     * @param polygon the list of coordinates representing the polygon vertices.
+     * @throws InvalidConstraintException if the polygon is invalid.
+     */
 
     public SpatioPolygon(List<Coordinate> polygon) throws InvalidConstraintException{
         this.polygon = polygon;
@@ -19,10 +31,21 @@ public class SpatioPolygon implements Constraint{
         }
     }
 
+    /**
+     * Constructs a SpatioPolygon with the given array of coordinates.
+     *
+     * @param polygon the array of coordinates representing the polygon vertices.
+     * @throws InvalidConstraintException if the polygon is invalid.
+     */
     public SpatioPolygon(Coordinate... polygon) throws InvalidConstraintException {
         this(Arrays.asList(polygon));
     }
 
+    /**
+     * Returns a Decomposer object that decomposes the constraint.
+     *
+     * @return a Decomposer object that decomposes the constraint.
+     */
     @Override
     public Decomposer<Constraint> decomposer() {
         return new Decomposer<Constraint>() {
@@ -50,6 +73,13 @@ public class SpatioPolygon implements Constraint{
         };
     }
 
+    /**
+     * Checks if the given condition is satisfied by the constraint.
+     *
+     * @param condition the condition to check.
+     * @return true if the condition is satisfied by the constraint, false otherwise.
+     */
+
     @Override
     public boolean satisfy(Condition condition) {
         if(!(condition instanceof Coordinate)) return false;
@@ -57,11 +87,21 @@ public class SpatioPolygon implements Constraint{
         return PointInPolygon(coordinate,polygon);
     }
 
+    /**
+     * Returns the class of the condition of the constraint.
+     *
+     * @return the class of the condition of the constraint.
+     */
     @Override
     public Class<? extends Condition> getConditionClass() {
         return Coordinate.class;
     }
 
+    /**
+     * Returns a string representation of the constraint.
+     *
+     * @return a string representation of the constraint.
+     */
     @Override
     public String toString(){
         String str = "SpatioPolygon{";
@@ -73,10 +113,23 @@ public class SpatioPolygon implements Constraint{
         return str;
     }
 
+    /**
+     * Returns a description of the constraint.
+     *
+     * @return a description of the constraint.
+     */
     @Override
     public String description() {
         return toString();
     }
+
+    /**
+     *
+     * Checks the validity of a polygon represented as a list of coordinates.
+     *
+     * @param polygon a list of coordinates representing the polygon
+     * @return true if the polygon is valid, false otherwise
+     */
 
     private boolean PolygonValidityChecker (List<Coordinate> polygon){
         int pointsNum = polygon.size();
@@ -102,6 +155,15 @@ public class SpatioPolygon implements Constraint{
         return true;
     }
 
+    /**
+     *
+     * Checks if two line segments intersect.
+     * @param A the first endpoint of the first line segment
+     * @param B the second endpoint of the first line segment
+     * @param C the first endpoint of the second line segment
+     * @param D the second endpoint of the second line segment
+     * @return true if the line segments intersect, false otherwise
+     */
     private boolean SegmentsIntersect(Coordinate A, Coordinate B, Coordinate C, Coordinate D) {
         double ccw1 = ccw(A, B, C);
         double ccw2 = ccw(A, B, D);
@@ -110,11 +172,27 @@ public class SpatioPolygon implements Constraint{
         return (ccw1 * ccw2 < 0) && (ccw3 * ccw4 < 0);
     }
 
+
+    /**
+     *
+     * Calculates the cross product of two vectors.
+     * @param A the first vector
+     * @param B the second vector
+     * @param C the third vector
+     * @return the cross product of AB and AC
+     */
     private double ccw(Coordinate A, Coordinate B, Coordinate C) {
         return (B.longitude - A.longitude) * (C.latitude - A.latitude) - (B.latitude - A.latitude) * (C.longitude - A.longitude);
     }
 
 
+    /**
+     *
+     * Determines if a given point is inside a polygon by counting the number of times a line from the point to the right intersects with the polygon.
+     * @param point The point to check for inside the polygon.
+     * @param polygon The list of vertices that form the polygon.
+     * @return true if the point is inside the polygon, false otherwise.
+     */
     public static boolean PointInPolygon(Coordinate point, List<Coordinate> polygon) {
         int crossings = 0;
         for (int i = 0; i < polygon.size(); i++) {
@@ -144,10 +222,18 @@ public class SpatioPolygon implements Constraint{
         return (crossings % 2 != 0);
     }
 
-    // 划分多边形子区域
+    /**
+     *
+     * Divides a polygon into sub-polygons by dividing its bounding box into a grid of smaller rectangles and testing if each rectangle is inside the polygon.
+     *
+     * @param polygon The polygon to divide into sub-polygons.
+     * @param copies The number of times to divide the bounding box in each direction.
+     * @return A list of sub-polygons that cover the area of the original polygon.
+     * @throws InvalidConstraintException if a sub-polygon could not be constructed from the given coordinates.
+     */
     public List<Constraint> ComputeSubPolygon(List<Coordinate> polygon, int copies) throws InvalidConstraintException {
         List<Constraint>subPolygons = new ArrayList<>();
-        // 找到多边形的边界
+
         double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, maxX = Double.MIN_VALUE, maxY = Double.MIN_VALUE;
         for (Coordinate point : polygon) {
             if (point.longitude < minX) minX = point.longitude;
@@ -159,12 +245,12 @@ public class SpatioPolygon implements Constraint{
         double xstep = (maxX - minX)/copies;
         double ystep = (maxY - minY)/copies;
 
-        // 计算矩形框的四个角点
+
         Coordinate topLeft = new Coordinate(minX, maxY);
         Coordinate topRight = new Coordinate(maxX, maxY);
         Coordinate bottomLeft = new Coordinate(minX, minY);
         Coordinate bottomRight = new Coordinate(maxX, minY);
-        // 计算矩形框内的小格子左上角坐标和右下角坐标，并保存到列中
+
         List<Coordinate[]> cells = new ArrayList<>();
         for (double x = minX; x < maxX; x += xstep) {
             for (double y = minY; y < maxY; y += ystep) {
@@ -173,15 +259,15 @@ public class SpatioPolygon implements Constraint{
                 cells.add(new Coordinate[]{cellTopLeft, cellBottomRight});
             }
         }
-        // 判断每个小格子是否在多边形内部，并保存在新列表中
+
         List<Coordinate> result = new ArrayList<>();
         for (Coordinate[] cell : cells) {
             Coordinate cellCenter = new Coordinate(cell[0].longitude + xstep / 2, cell[1].latitude + ystep / 2);
             if (PointInPolygon(cellCenter,polygon)) {
-                result.add(cell[0]); // 左上角
-                result.add(new Coordinate(cell[0].longitude, cell[1].latitude)); // 左下角
-                result.add(cell[1]); // 右下角
-                result.add(new Coordinate(cell[1].longitude, cell[0].latitude)); // 右上角
+                result.add(cell[0]);
+                result.add(new Coordinate(cell[0].longitude, cell[1].latitude));
+                result.add(cell[1]);
+                result.add(new Coordinate(cell[1].longitude, cell[0].latitude));
             }
         }
         for(int i=0;i<result.size();i++){
@@ -193,34 +279,5 @@ public class SpatioPolygon implements Constraint{
         }
         return subPolygons;
     }
-
-    private boolean CellInPolygon(List<Coordinate> polygon, Coordinate point) {
-        boolean result = false;
-        int j = polygon.size() - 1;
-        for (int i = 0; i < polygon.size(); i++) {
-            if ((polygon.get(i).latitude < point.latitude && polygon.get(j).latitude >= point.latitude
-                    || polygon.get(j).latitude < point.latitude && polygon.get(i).latitude >= point.latitude)
-                    && (polygon.get(i).longitude + (point.latitude - polygon.get(i).latitude)
-                    / (polygon.get(j).latitude - polygon.get(i).latitude)
-                    * (polygon.get(j).longitude - polygon.get(i).longitude) < point.longitude)) {
-                result = !result;
-            }
-            j = i;
-        }
-        return result;
-    }
-
-//    public static void main(String []args) throws InvalidConstraintException {
-//        List<Coordinate> polygon = new ArrayList<>();
-//        polygon.add(new Coordinate(0,1));
-//        polygon.add(new Coordinate(1,3));
-//        polygon.add(new Coordinate(2,4));
-//        polygon.add(new Coordinate(4,2));
-//        polygon.add(new Coordinate(2,0));
-//        SpatioPolygon spatioPolygon = new SpatioPolygon(polygon);
-//        System.out.println(spatioPolygon.satisfy(new Coordinate(2,2)));
-//        System.out.println(spatioPolygon.satisfy(new Coordinate(4,4)));
-//        System.out.println(spatioPolygon.description());
-//    }
 }
 
