@@ -16,9 +16,9 @@ public class Coordinate implements Condition{
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj instanceof Coordinate){
-            Coordinate anCoord = (Coordinate) obj;
-            return (Double.valueOf(this.longitude).compareTo(Double.valueOf(anCoord.longitude)) == 0)
-                    && (Double.valueOf(this.latitude).compareTo(Double.valueOf(anCoord.latitude)) == 0);
+            Coordinate coo = (Coordinate) obj;
+            return (Double.compare(this.longitude, coo.longitude) == 0)
+                    && (Double.compare(this.latitude, coo.latitude) == 0);
         }
         return false;
     }
