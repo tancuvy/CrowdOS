@@ -1,7 +1,7 @@
 package cn.crowdos.kernel;
 
-import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentive;
-import cn.crowdos.kernel.TrustBasedIncentive.TrustBasedIncentiveImpl;
+import cn.crowdos.kernel.Incentive.CredibilityBasedIncentive;
+import cn.crowdos.kernel.Incentive.CredibilityBasedIncentiveImpl;
 import cn.crowdos.kernel.algorithms.*;
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.system.DuplicateResourceNameException;
@@ -88,7 +88,7 @@ public class Kernel implements CrowdKernel {
             systemResourceCollection.register(new AlgoContainer(new AlgoFactoryAdapter(systemResourceCollection)),"DefaultAlgo");
             systemResourceCollection.register(new Scheduler(systemResourceCollection));
             systemResourceCollection.register(new MissionHistory());
-            systemResourceCollection.register(new TrustBasedIncentiveImpl());
+            systemResourceCollection.register(new CredibilityBasedIncentiveImpl());
             systemResourceCollection.register(new AlgoContainer(new PTMostFactory(systemResourceCollection)),"PTMost");
             systemResourceCollection.register(new AlgoContainer(new T_MostFactory(systemResourceCollection)),"T_Most");
             systemResourceCollection.register(new AlgoContainer(new T_RandomFactory(systemResourceCollection)),"T_Random");
@@ -158,15 +158,15 @@ public class Kernel implements CrowdKernel {
     public Map<Participant, Double> getTaskIncentiveAssignmentScheme(Task task , Double rewards){
 
         MissionHistory resource = systemResourceCollection.getResourceHandler(MissionHistory.class).getResource();
-        TrustBasedIncentive tbi =  systemResourceCollection.getResourceHandler(TrustBasedIncentive.class).getResource();
+        CredibilityBasedIncentive credibility =  systemResourceCollection.getResourceHandler(CredibilityBasedIncentive.class).getResource();
 
         List<Mission> missions = resource.getMissionsByTask(task);
         Mission firstMission = missions.get(0);
         Participant firstSubmitParticipant = firstMission.getFirstSubmitParticipant();
         List<Participant> participants = firstMission.getParticipants();
 
-        tbi.allocateRewards(rewards,task,firstSubmitParticipant,participants);
-        return tbi.IncentiveAssignment();
+        credibility.allocateRewards(rewards,task,firstSubmitParticipant,participants);
+        return credibility.IncentiveAssignment();
     }
 
     @Override

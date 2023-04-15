@@ -1,4 +1,4 @@
-package cn.crowdos.kernel.TrustBasedIncentive;
+package cn.crowdos.kernel.Incentive;
 
 import cn.crowdos.kernel.resource.Participant;
 import cn.crowdos.kernel.resource.Task;
@@ -26,7 +26,6 @@ import java.util.Map;
  *
  * @author yuzy
  * @since 1.0.3
- * @see CredibilityBasedIncentive
  */
 public interface CredibilityBasedIncentive extends Resource<CredibilityBasedIncentive> {
 
@@ -34,9 +33,9 @@ public interface CredibilityBasedIncentive extends Resource<CredibilityBasedInce
     Map<Participant, Double> IncentiveAssignment();
 
     // 信任值计算
-    void earnTrust(Participant participant);
-    void penalizeTrust(Participant participant);
-    int getTrust(Participant participant);
+    void addCredibility(Participant participant);
+    void penalizeCredibility(Participant participant);
+    int getCredibility(Participant participant);
 
     // 奖励分配
     void allocateRewards(double rewards, Task task, Participant firstParticipant, List<Participant> participants);

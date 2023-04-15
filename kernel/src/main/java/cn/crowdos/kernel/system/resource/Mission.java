@@ -44,7 +44,7 @@ public class Mission {
     }
 
     /**
-     * The getFirstSubmitParticipant function returns the participant who submitted first.
+     * The getFirstSubmitParticipant function z.
      *
      * @return The participant with the lowest time
      *
