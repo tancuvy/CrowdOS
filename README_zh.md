@@ -1,4 +1,9 @@
-# CrowdOS [![license](https://img.shields.io/github/license/loyx/CrowdOS)](https://www.apache.org/licenses/LICENSE-2.0) [![checks](https://img.shields.io/github/checks-status/loyx/CrowdOS/master)]() [![lang](https://img.shields.io/github/languages/top/loyx/CrowdOS)]() [![issues](https://img.shields.io/github/issues/loyx/CrowdOS)]()
+# CrowdOS
+- [Project on GitHub](https://github.com/crowdosNWPU/CrowdOS)
+- [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+## License
+本项目采用 Apache License 2.0 许可，详情请参见 [LICENSE](LICENSE.txt) 文件。
+SPDX-License-Identifier: Apache-2.0
 
 CrowdOS是一个无处不在的操作系统，用于[Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing)和[移动众包](https://en.wikipedia.org/wiki/Crowdsensing)，它可以同时处理多种类型的它可以同时处理多种类型的众包问题。
 

@@ -1,4 +1,9 @@
-# CrowdOS [![license](https://img.shields.io/github/license/loyx/CrowdOS)](https://www.apache.org/licenses/LICENSE-2.0) [![checks](https://img.shields.io/github/checks-status/loyx/CrowdOS/master)]() [![lang](https://img.shields.io/github/languages/top/loyx/CrowdOS)]() [![issues](https://img.shields.io/github/issues/loyx/CrowdOS)]() [![fork](https://img.shields.io/github/forks/loyx/CrowdOS?style=social)]() [![stars](https://img.shields.io/github/stars/loyx/CrowdOS?style=social)]()
+# CrowdOS[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)[![Top Language](https://img.shields.io/github/languages/top/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS)[![Issues](https://img.shields.io/github/issues/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS/issues)[![Forks](https://img.shields.io/github/forks/crowdosNWPU/CrowdOS?style=social)](https://github.com/crowdosNWPU/CrowdOS/network/members)[![Stars](https://img.shields.io/github/stars/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS/stargazers)
+- [Project on GitHub](https://github.com/crowdosNWPU/CrowdOS)
+
+## License
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE.txt) file for details.
+SPDX-License-Identifier: Apache-2.0
 
 CrowdOS is a ubiquitous operating system for [Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing) and
 [Mobile Crowdsensing](https://en.wikipedia.org/wiki/Crowdsensing), which can deal with multiple types of 
@@ -109,8 +114,8 @@ operating system, and JVM version you’re using.
 ### kernel
 crowdos-kernel. The main library providing features that support the other parts of CrowdOS kernel.
 #### kernel.algorithms
-**algorithms** contains three algorithms used by **Scheduler**. this part will be moved to crowdos-aaas feature.
-#### kernel.Constraint
+**algorithm** contains three algorithms used by **Scheduler**. this part will be moved to crowdos-aaas feature.
+#### kernel.Constraint  
 Contains some constraints to used when construct a task.
 #### kernel.resource
 Contains participant and task.
