@@ -1,0 +1,31 @@
+This project includes the following components, which are used under the terms of their respective licenses:
+
+1. Component: org.junit.jupiter:junit-jupiter-params
+   License: Eclipse Public License v2.0
+   License URL: https://www.eclipse.org/legal/epl-2.0/
+   Description: A module for parameterized tests in JUnit Jupiter.
+
+2. Component: org.junit.jupiter:junit-jupiter-engine
+   License: Eclipse Public License v2.0
+   License URL: https://www.eclipse.org/legal/epl-2.0/
+   Description: The test engine for running JUnit Jupiter based tests.
+
+3. Component: org.junit.jupiter:junit-jupiter-api
+   License: Eclipse Public License v2.0
+   License URL: https://www.eclipse.org/legal/epl-2.0/
+   Description: API for writing tests and extensions in JUnit Jupiter.
+
+4. Component: org.junit.jupiter:junit-jupiter
+   License: Eclipse Public License v2.0
+   License URL: https://www.eclipse.org/legal/epl-2.0/
+   Description: Aggregates common JUnit Jupiter modules.
+
+5. Component: cn.crowdos:crowdos-dataservice
+   License: Apache License 2.0
+   License URL: http://www.apache.org/licenses/LICENSE-2.0
+
+6. Component: cn.crowdos:crowdos-aaas
+   License: Apache License 2.0
+   License URL: http://www.apache.org/licenses/LICENSE-2.0
+
+The full text of each license can be found at the provided URLs.
