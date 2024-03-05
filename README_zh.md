@@ -1,6 +1,6 @@
-# CrowdOS
+# CrowdOS[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)[![Top Language](https://img.shields.io/github/languages/top/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS)[![Issues](https://img.shields.io/github/issues/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS/issues)[![Forks](https://img.shields.io/github/forks/crowdosNWPU/CrowdOS?style=social)](https://github.com/crowdosNWPU/CrowdOS/network/members)[![Stars](https://img.shields.io/github/stars/crowdosNWPU/CrowdOS)](https://github.com/crowdosNWPU/CrowdOS/stargazers)
 - [Project on GitHub](https://github.com/crowdosNWPU/CrowdOS)
-- [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 ## License
 本项目采用 Apache License 2.0 许可，详情请参见 [LICENSE](LICENSE.txt) 文件。
 SPDX-License-Identifier: Apache-2.0

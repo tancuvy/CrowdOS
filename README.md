@@ -6,7 +6,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 SPDX-License-Identifier: Apache-2.0
 
 CrowdOS is a ubiquitous operating system for [Crowdsoucring](https://en.wikipedia.org/wiki/Crowdsourcing) and
-[Mobile Crowdsensing](https://en.wikipedia.org/wiki/Crowdsensing), which can deal with multiple types of 
+[Mobile Crowdsensing](https://en.wikipedia.org/wiki/Crowdsensing), which can deal with multiple types of
 crowdsourcing problems simultaneously.
 
 ## Installation and Getting Started
@@ -23,7 +23,7 @@ If you use Maven or Gradle, add a dependency with following coordinates to your 
     </dependency>
 </dependencies>
 ```
-You can use the features provided by CrowdOS in any way you want, but if you want to develop a springboot application, 
+You can use the features provided by CrowdOS in any way you want, but if you want to develop a springboot application,
 you only need the following few simple steps:
 1. You need a _CrowdKernelComponent.java_ like this one, which is used by the Spring Framework.
 ```java
@@ -41,8 +41,8 @@ public class CrowdKernelComponent {
     }
 }
 ```
-2. You need to create the Participant class as you want, you should either implement the _Participant_ interface, 
-or inherit directly from the_AbstractParticipant_ class.
+2. You need to create the Participant class as you want, you should either implement the _Participant_ interface,
+   or inherit directly from the_AbstractParticipant_ class.
 ```java
 import cn.crowdos.kernel.constraint.Condition;
 import cn.crowdos.kernel.constraint.wrapper.*;
@@ -62,8 +62,8 @@ public class User extends AbstractParticipant {
     //...
 }
 ```
-3. You need to create the task class as you want, and you should either implement the _Task_ interface 
-or inherit directly from the _AbstractTask_ class or any other task class we provide.
+3. You need to create the task class as you want, and you should either implement the _Task_ interface
+   or inherit directly from the _AbstractTask_ class or any other task class we provide.
 ```java
 import cn.crowdos.kernel.constraint.Constraint;
 import cn.crowdos.kernel.resource.SimpleTask;
@@ -91,7 +91,7 @@ crowdKernelComponent.getKernel().submitTask(task);
 5. Do everything you want.
 
 This is a simple demo of a Springboot application powered by CrowdOS ([CrowdOS-demo](https://github.com/loyx/CrowdOS-demo)).
-and [WeSense]() is an actual running application, it is based on CrowdOS and you can download it from the app store 
+and [WeSense]() is an actual running application, it is based on CrowdOS and you can download it from the app store
 on Android and IOS.
 
 ## Getting Help
@@ -101,12 +101,12 @@ if you have any trouble with CrowdOS, the following may be of help to you.
 - Or email us: _crowdos_nwpu@163.com_
 
 ## Reporting Issue
-CrowdOS uses GitHub's integrated issue tracking system to record bugs and feature requests. 
+CrowdOS uses GitHub's integrated issue tracking system to record bugs and feature requests.
 If you want to raise an issue, please follow the recommendations below:
 - Before you log a bug, please search the issue tracker to see if someone has already reported the problem.
 - If the issue doesn't already exist, create a new issue.
-- Please provide as much information as possible with the issue report. We like to know the CrowdOS version, 
-operating system, and JVM version you’re using.
+- Please provide as much information as possible with the issue report. We like to know the CrowdOS version,
+  operating system, and JVM version you’re using.
 - If you need to paste code or include a stack trace, use Markdown. ``` escapes before and after your text.
 - If possible, try to create a test case or project that replicates the problem and attach it to the issue.
 ## Modules
@@ -115,7 +115,7 @@ operating system, and JVM version you’re using.
 crowdos-kernel. The main library providing features that support the other parts of CrowdOS kernel.
 #### kernel.algorithms
 **algorithm** contains three algorithms used by **Scheduler**. this part will be moved to crowdos-aaas feature.
-#### kernel.Constraint  
+#### kernel.Constraint
 Contains some constraints to used when construct a task.
 #### kernel.resource
 Contains participant and task.
